@@ -2,14 +2,23 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <style>
+      table, th, td {
+          font-family:sans-serif;
+          font-size:15px;
+          border: 1px solid black;
+          border-collapse: collapse;
+      }
+      th, td {
+          padding: 5px;
+      }
+      </style>
     <title>Keplerian Orbits</title>
 </head>
 
 <body style="font-family:sans-serif;
              font-size:15px;
              width:600px;
-             <!-- margin-left:auto;
-             margin-right:auto; -->
              background-color:#E6E6E6 ;">
 
   <h1 style="font-size:24px; text-align:center;">Keplerian Oribits</h1>
@@ -17,14 +26,20 @@
   <h2 style="font-size:20px; text-align:center;">Introduction</h2>
 <p>
   The Solar System consists of eight planets, together with many smaller bodies,
-  orbiting the Sun. In addition to our own Solar System, the Kepler Mission (LINK KEPLER),
-  has discovered thousands of other <i> extra-solar</i> systems. A catalogue of these
-  systems can be found here (LINK EXOPLANETS). These new systems are very different from
-  our familiar Solar System. Most of them are very compact. Most of these planets orbit inside
+  that orbit the Sun. In addition to our own Solar System, astronomers
+  have discovered thousands of other <i> extra-solar</i> planets. A catalogue of these
+  systems can be found <a href="http://exoplanets.org/" >here</a>. These new systems are very different from
+  our familiar Solar System. Most of them are very compact, and most of them orbit inside
   the Earth's orbit, while many have orbits closer to their host star. In addition, most
-  of these discovered <i> exoplanets </i> are Super Earths, or planets that have a mass and size
-  between that of Earth and Neptune.
+  of these discovered <i> exoplanets </i> are Super Earths, or planets that have a mass that of Earth and Neptune. The figures below show the distribution of planet semi major axes and masses for all of the discovered explanets.
+  <br /> <br />
 
+  <div>
+    <img src="ahist.svg" style="float: left; width: 50%;">
+    <img src="mhist.svg" style="float: right; width: 50%;">
+  </div>
+
+  <br /> <br /> <br />
   <p>In the following activities, we will explore the different types of closed orbits using
   the <a href="index.html" > Orbit Simulator</a>. There are three activities which
 explore different physical quantities which affect a planet's orbit. </p>
@@ -32,34 +47,40 @@ explore different physical quantities which affect a planet's orbit. </p>
 <h2 style="font-size:20px; text-align:center;">Activity 1</h2>
 
 <p>
-In this activity we will use the Orbit Simulator to discover the relationship
+In this activity we will use the <a href="index.html" >Orbit Simulator</a> to discover the relationship
 between how long it takes a planet to go around the Sun and how far away that
 planet is from the Sun. This is also called Kepler's Third Law.
 <ol>
   <li>Adjust the Planet's semi-major axis using the Semi Major Axis slider.
   Note the units of the semi-major axis. What happens when you increase the
   distance between the planet and the Sun?
-  </li>
-  <li> Using the graph of position versus time in the orbit simulator, measure
-    the period of your planet for at least 10 different semi major axis values.
+  </li> <br />
+  <li> <b> Using the graph of position versus time </b> in the Orbit Simulator, <b>measure
+    the period and velocity of your planet for several different semi major axis values</b>. If you
+    want to use real planets, you can use the Planet Table at the bottom of the page
+    which summarizes the properties of the Solar System planets as well as some exoplanets.
     Make sure to evenly space out your semi major axis choices on the slider.
-  </li>
+  </li> <br />
   <li>
-    Make a plot of Period vs Semi Major Axis with the data you've collected.
+    Using your favorite plotting program (I recommend <a href="https://plot.ly/">plot.ly</a>), make a plot of Period vs Semi Major Axis and a plot of Velocity vs Semi Major Axis with the data you've collected.
     What does this tell you about the relationship between period and semi-major
-    axis? Is it a linear relationship? Why or why not?
-  </li>
+    axis? Is it a linear relationship? Why or why not? Remember that two variables, x and y,
+    have a linear relationship if you can write relate them with the equation of a line, y=m*x+b.
+  </li> <br />
   <li>
     Next make a plot of the square of the period vs the cube of the semi-major
     axis. Does this graph describe a linear relationship?
-  </li>
+  </li> <br />
   <li>
     Finally, make a plot of the logarithm of period versus the logarithm of semi-
     major axis. What is the slope of this line and how does this connect to the
     previous question?
-  </li>
+  </li> <br />
   <li>
     What is Kepler's Third Law from your data?
+  </li> <br />
+  <li>
+    What is the relationship between Planet Velocity and Semi Major Axis?
   </li>
 
 </ol>
@@ -74,14 +95,17 @@ planet's eccentricity affects it.
   <li>
     Adjust the eccentricity of the planet using the eccentricity slider. How does
     this change the orbit? What shape is this?
-  </li>
+  </li> <br />
   <li>
-    How does the planet's speed change during the course of an orbit?
-  </li>
+    How does the planet's speed change during the course of an orbit? Does this differ from
+    what you found in the first activity for a circular orbit?
+  </li> <br />
   <li>
     Using the velocity versus position graph, what is the ratio of the speed of
-    the planet at closest approach (periapse), to farther approach (apoapse)?
+    the planet at closest approach (periapse), to farther approach (apoapse)? What is this
+    ratio for a circular orbit?
   </li>
+
 </ol>
 
 
@@ -94,11 +118,96 @@ mass.
     to the Sun?
   </li>
   <li>
-    What do you think the Sun is orbiting?
+    Set e=0 and vary
   </li>
 </ol>
 
+<h2 style="font-size:20px; text-align:center;">Planet Table</h2>
 
+<p> Below is a table of the Solar System planets, as well as some exoplanets. Try to set up the orbit of each of the planets in the table and measure their orbital period. You can try out different exoplanets by looking them up <a href="http://exoplanets.org/table" >here</a>. </p>
+
+<table style="width:100%">
+  <tr>
+    <th>Planet</th>
+    <th>Semi Major Axis (Au)</th>
+    <th>Eccentricity</th>
+    <th>Mass (M&oplus;)</th>
+  </tr>
+  <tr>
+    <td>Mercury</td>
+    <td>0.39</td>
+    <td>0.21</td>
+    <td>0.055</td>
+  </tr>
+  <tr>
+    <td>Venus</td>
+    <td>0.72</td>
+    <td>0.0.007</td>
+    <td>0.82</td>
+  </tr>
+  <tr>
+    <td>Earth</td>
+    <td>1.0</td>
+    <td>0.017</td>
+    <td>1.0</td>
+  </tr>
+ <tr>
+    <td>Mars</td>
+    <td>1.52</td>
+    <td>0.093</td>
+    <td>0.055</td>
+  </tr>
+ <tr>
+    <td>Jupiter</td>
+    <td>5.20</td>
+    <td>0.048</td>
+    <td>317.8</td>
+  </tr>
+ <tr>
+    <td>Saturn</td>
+    <td>9.53</td>
+    <td>0.054</td>
+    <td>95.3</td>
+  </tr>
+ <tr>
+    <td>Uranus</td>
+    <td>19.19</td>
+    <td>0.046</td>
+    <td>14.6</td>
+  </tr>
+ <tr>
+    <td>Neptune</td>
+    <td>30.06</td>
+    <td>0.01</td>
+    <td>17.23</td>
+  </tr>
+  <tr>
+     <td><a href='http://exoplanets.org/detail/HD_1237_b' >HD 1237 b</a></td>
+     <td>0.5</td>
+     <td>0.51</td>
+     <td>>1071 </td>
+   </tr>
+   <tr>
+      <td><a href='http://exoplanets.org/detail/WASP-14_b' >Wasp-14 b<a></td>
+      <td>0.037</td>
+      <td>0.091</td>
+      <td>2444</td>
+    </tr>
+    <tr>
+       <td><a href='http://exoplanets.org/detail/HD_147018_b' >HD 147018</a> b</td>
+       <td>0.24</td>
+       <td>0.47</td>
+       <td>>674</td>
+     </tr>
+     <tr>
+        <td><a href='http://exoplanets.org/detail/GJ_649_b' >GJ 649 b</a></td>
+        <td>1.13</td>
+        <td>0.30</td>
+        <td>>103</td>
+      </tr>
+
+</table>
+<p> Written by Adam Dempsey. <br> CIERA, Northwestern University.</p>
 
 </body>
 </html>

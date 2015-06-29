@@ -56,6 +56,7 @@
     <div class="charts">
       <div id="chartContainer" style="height: 200px; width: 100%;"> </div>
       <div id="chartContainer2" style="height: 200px; width: 100%;"> </div>
+      <div id="chartContainer3" style="height: 200px; width: 100%;"> </div>
       <br /> <br /> <br />
     </div>
     <!-- <div style="text-align:center" >
@@ -123,6 +124,7 @@
 
       var NewtG  = 4*Math.PI*Math.PI;
       var VtoKms = 4.74057172;
+      var VtoMs = VtoKms * 1000;
       var SuntoEarth = 332948.6;
       var SuntoJupiter = 1047.2;
       var SuntoNeptune = 19347.;
@@ -147,13 +149,15 @@
       var dps =[];
       var dps2 = [];
       var dps2S = [];
+      var dpsR=[];
       var chart,chart2;
 
       var chartxP = 0;
       var chartyP = 0;
       var chartxS = 0;
       var chartyS = 0;
-      var chartx2, charty2;
+      var chartx2, charty2, chartR;
+
 
       var dataLength = 600; // number of dataPoints visible at any point
       var PointsPerOrbit = 200;
