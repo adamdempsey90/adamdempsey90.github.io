@@ -13,21 +13,18 @@
              height=100%;
              margin-left:auto;
              margin-right:auto;
-             background-color:#E6E6E6 ;"> <!-- #c0c0c0 -->
+             background-color:#E6E6E6 ;"> 
 
     <h1 style="font-size:24px; text-align:center;">Orbit Simulator</h1>
-
+    <div style="align:center">
+      Click <a href="worksheet.html"> here.</a> for an activity that uses the Orbit Simulator.
+    </div>
 
     <div class="wrapper">
       <canvas id="theCanvas" width="300px" height="300px"></canvas>
       <canvas id="trailCanvas" width="300px" height="300px"></canvas>
-      <!-- <canvas id="theSunCanvas" width="300px" height="300px"></canvas>
-      <canvas id="trailSunCanvas" width="300px" height="300px"></canvas>
-      <canvas id="thePlanetCanvas" width="300px" height="300px"></canvas>
-      <canvas id="trailPlanetCanvas" width="300px" height="300px"></canvas>
-      <canvas id="theCMCanvas" width="300px" height="300px"></canvas> -->
     </div>
-    <!-- <div style="text-align:center" > -->
+
     <div class="right-section">
       <br /> <br /> <br /> <br /> <br />
 
@@ -42,35 +39,16 @@
       <input type="range"  id="mSlider" min="-5.5" max="0" step=".01" value="-5.5" oninput="initVars();" onchange="initVars();">
       M = <span id="mReadout"> 1 Earths </span>
       <br /> <br />
-      <!-- <a class="customButton" href="javascript:void(0)"
-              onclick="clearTrails();" ontouchstart="">Clear</a>
-      &nbsp; -->
+
       &nbsp; &nbsp; &nbsp; &nbsp;
       <input type="button" id='myButton' value ="Stop" onclick="buttonChange();" class="customButton"></input>
-      <!-- <a class="button" value ="stop" href="javascript:void(0)"
-              onclick="stopIntegration();" ontouchstart="">Stop</a>
-      &nbsp;
-      <a class="customButton" href="javascript:void(0)"
-              onclick="startIntegration();" ontouchstart="">Start</a>
-      <br /> -->
+
       </div>
     <div class="charts">
       <div id="chartContainer" style="height: 200px; width: 100%;"> </div>
       <div id="chartContainer2" style="height: 200px; width: 100%;"> </div>
       <div id="chartContainer3" style="height: 200px; width: 100%;"> </div>
     </div>
-    <!-- <div style="text-align:center" >
-
-    </div> -->
-    <!-- <div style="text-align:center" >
-      Eccentricity = <span id="eReadout">0</span>
-      <input type="range" orient="vertical" id="eSlider" min="0" max=".99" step=".01" value="0" oninput="initVars();" onchange="initVars();">
-    </div>
-    <div style="text-align:center" >
-      Semi Major Axis = <span id="aReadout">1</span> AU
-      <input type="range" orient="vertical" id="aSlider" min="-1.5" max="2" step=".01" value="0" oninput="initVars();" onchange="initVars();">
-    </div>
-    <div style="text-align:center" > -->
 
 
 
@@ -90,13 +68,7 @@
       to measure this <i> radial velocity </i> of the Sun. Astronomers can measure this
       velocity and use it to infer the existence of unseen plants.
     </p>
-    <p> The activity that uses the Orbit Simulator can be found <a href="worksheet.html"> here.</a> </p>
-<!--
-    <p>This simulation demonstrates the radial velocity method for exoplanet detection.
-        A star and a planet orbit their mutual center of mass. You can vary the
-        eccentricity and semi-major axis of the orbit, as well as the mass of the planet
-        (relative to the star).</p>
-    <p> The bottom plot shows the Star's velocity towards an observer, if the observer where viewing the system edge on.</p> -->
+
     <footer> Written by Adam Dempsey. <br> CIERA, Northwestern University.</footer>
   </div>
 
@@ -105,23 +77,6 @@
       var theContext = theCanvas.getContext("2d");
       var trailCanvas = document.getElementById("trailCanvas");
       var trailContext = trailCanvas.getContext("2d");
-
-      // var theCMCanvas = document.getElementById("theCMCanvas");
-      // var theCMContext = theCMCanvas.getContext("2d");
-      //
-      // var theSunCanvas = document.getElementById("theSunCanvas");
-      // var theSunContext = theSunCanvas.getContext("2d");
-      //
-      // var trailSunCanvas = document.getElementById("trailSunCanvas");
-      // var trailSunContext = trailSunCanvas.getContext("2d");
-      //
-      // var thePlanetCanvas = document.getElementById("thePlanetCanvas");
-      // var thePlanetContext = thePlanetCanvas.getContext("2d");
-      //
-      // var trailPlanetCanvas = document.getElementById("trailPlanetCanvas");
-      // var trailPlanetContext = trailPlanetCanvas.getContext("2d");
-
-
 
       var eSlider = document.getElementById('eSlider');
       var aSlider = document.getElementById('aSlider');
