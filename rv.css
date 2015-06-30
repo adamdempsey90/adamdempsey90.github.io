@@ -29,7 +29,7 @@ input[type="range"]::-ms-track {
 
 .wrapper {
 position: relative;
-width: 300px;
+width: 50%;
 height: 300px;
 float:left;
 background-color: #E6E6E6;
@@ -38,7 +38,7 @@ color:black
 .charts {
   position: relative;
   float: left;
-  height: 400px;
+  height: 600px;
   width: 100%;
 }
 .wrapper canvas {
@@ -54,7 +54,7 @@ color:black
  float: left;
 }
 .right-section {
-  width: 300px;
+  width: 50%;
   height: 300px;
   float:right;
   background-color:#E6E6E6; /* #929292; */
