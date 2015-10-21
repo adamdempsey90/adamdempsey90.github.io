@@ -32,68 +32,68 @@ def initialize(vi,theta,h):
     return x,y,vx,vy
 
 
-def update_simple(x,y,vx,vy,t,dt):
+def update_simple(x_i,y_i,vx_i,vy_i,t,dt):
     """ Simple update scheme that advnaces the ball forward in
     time by dt. """
 
 # Set the variables to their new values using v = dx/dt and a = dv/dt
-    vx_new =           # FIX ME!
-    vy_new =            # FIX ME!
-    x_new =            # FIX ME!
-    y_new =           # FIX ME!
+    vx_f =        # FIX ME!
+    vy_f =            # FIX ME!
+    x_f =           # FIX ME!
+    y_f =           # FIX ME!
 
 
 # What happens if the ball hits the wall.
 # What are these lines doing?
-    if y_new < 0:
-        y_new = 0   # Set the y coordinate to zero
-        dt_new = -y/vy  # Calculate the time it takes to hit the floor
-        vy_new = -(vy-g*dt_new)  # Calculate the velocity that the ball hits the floor and reverse it.
-        x_new = x + vx*dt_new
+    if y_f < 0:
+        y_f = 0   # Set the y coordinate to zero
+        dt_new = -y_i/vy_i  # Calculate the time it takes to hit the floor
+        vy_f = -(vy_i-g*dt_new)  # Calculate the velocity that the ball hits the floor and reverse it.
+        x_f = x_i + vx_i*dt_new
 # Advance the simulation time t by dt  on the next 2 lines
         t =  t     # FIX ME!
     else:
-        t =  t     # FIX ME!
+        t =  t      # FIX ME!
 
-    return x_new,y_new,vx_new,vy_new,t
+    return x_f,y_f,vx_f,vy_f,t
 
 
-def update_leapfrog(x,y,vx,vy,t,dt):
+def update_leapfrog(x_i,y_i,vx_i,vy_i,t,dt):
     """ Update scheme based on a drift-kick-drift method. """
 
     # Set the variables to their new values using the drift-kick-drift scheme
 
     # First Drift
 
- #   x_new =       # FIX ME!
- #   y_new =       # FIX ME!
+#    x_f =     # FIX ME!
+#    y_f =       # FIX ME!
 
     # Now Kick
 
- #   vx_new =          # FIX ME!
- #   vy_new =       # FIX ME!
+ #   vx_f =          # FIX ME!
+ #   vy_f =       # FIX ME!
 
     # Second Drift
 
- #   x_new =         # FIX ME!
- #   y_new =       # FIX ME!
+ #   x_f =        # FIX ME!
+ #   y_f =    # FIX ME!
 
 
 # Special updates for when the ball hits the floor
-    if y_new < 0:
-        y_new = 0
-        dt_new = (vy + np.sqrt(vy*vy +2*g*y) )/(g)
-        vy_new = - (vy - g*dt_new)
-        x_new = x + vx*dt_new
+    if y_f < 0:
+        y_f = 0
+        dt_new = (vy_i + np.sqrt(vy_i*vy_i +2*g*y_i) )/(g)
+        vy_f = - (vy_i - g*dt_new)
+        x_f = x_i + vx_i*dt_new
 
 # Advance the simulation time t by dt  on the next 2 lines
-        t = t    # FIX ME!
+        t = t   # FIX ME!
     else:
         t = t   # FIX ME!
 
     return   # FIX ME!
 
-def update_dissipative(x,y,vx,vy,t,dt):
+def update_dissipative(x_i,y_i,vx_i,vy_i,t,dt):
     """ Update the position and velocity of the bouncing ball over a time dt,
     taking into account a loss of kinetic energy as the ball bounces. """
 
