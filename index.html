@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> <title>How to Find an Exoplanet</title>
+  <meta charset="utf-8"> <title>Adam Dempsey's Github Homepage</title>
   <link rel="stylesheet" type="text/css" href="rv.css">
-  <script src="rv.min.js"></script>
-  <script src="canvasjs.min.js"></script>
 </head>
 
 <body style="font-family:sans-serif;
@@ -15,120 +13,33 @@
              margin-right:auto;
              background-color:#E6E6E6 ;">
 
-    <h1 style="font-size:24px; text-align:center;">Orbit Simulator</h1>
-    <div style="align:center">
-      Click <a href="worksheet.html"> here.</a> for an activity that uses the Orbit Simulator.
-    </div>
-
-    <div class="wrapper">
-      <canvas id="theCanvas" width="300px" height="300px"></canvas>
-      <canvas id="trailCanvas" width="300px" height="300px"></canvas>
-    </div>
-
-    <div class="right-section">
-      <br /> <br /> <br /> <br /> <br />
-
-      <input type="range"  id="eSlider" min="0" max=".99" step=".01" value="0" oninput="initVars();" onchange="initVars();">
-        e = <span id="eReadout">0</span>
-      <br />
-
-      <input type="range"  id="aSlider" min="-1.5" max="2" step=".01" value="0" oninput="initVars();" onchange="initVars();">
-      a = <span id="aReadout">1 Au</span>
-      <br />
-
-      <input type="range"  id="mSlider" min="-5.5" max="0" step=".01" value="-5.5" oninput="initVars();" onchange="initVars();">
-      M = <span id="mReadout"> 1 Earths </span>
-      <br /> <br />
-
-      &nbsp; &nbsp; &nbsp; &nbsp;
-      <input type="button" id='myButton' value ="Stop" onclick="buttonChange();" class="customButton"></input>
-
-      </div>
-    <div class="charts">
-      <div id="chartContainer" style="height: 200px; width: 100%;"> </div>
-      <div id="chartContainer2" style="height: 200px; width: 100%;"> </div>
-      <div id="chartContainer3" style="height: 200px; width: 100%;"> </div>
-    </div>
+    <h1 style="font-size:24px; text-align:center;">Physics and Astronomy Activities.</h1>
 
 
-
-    <div>
-    <p>This simulation calculates the Keplerian orbit of a planet around a star like our Sun.
-      You can adjust the <i>mass</i> of the planet, the <i> eccentricity </i> of the orbit,
-      and the <i> semi major axis </i> of the orbit.
-    </p>
-    <p> The first graph shows the positions of the planet (in blue) and the Sun
-      (in red) in the horizontal direction in Astronomical Units (1 Au = 149,597,871 km) as a function of time.
-    <p> The second graph shows the velocity towards the bottom of the page for the planet (in blue) and the Sun (in red) in km/s as a function of time. Note how these graphs change as you change the eccentricty of the planet and the planet's mass.
-    </p>
+  <div>
     <p>
-      The third graph shows just the velocity of the Sun towards the bottom of the page. If you
-      were an observer looking from the bottom of the page up to the Sun, you would be able
-      to measure this <i> radial velocity </i> of the Sun. Astronomers can measure this
-      velocity and use it to infer the existence of unseen plants.
+      This page will house some of the activities and lessons I create for Physics and Astronomy classes. This is still in a very early stage, so pardon the mess!
     </p>
 
-    <footer> Written by Adam Dempsey. <br> CIERA, Northwestern University.</footer>
+    <p>
+      Click the links below to access the differnent activities. Some require a Python installation, while others only require a browser.
+    </p>
+    <br>
+    <h2 > Kinematics and Orbial Mechanics</h2>
+    <br>
+    <ul>
+      <h3 > Keplerian Motion and the Radial Velocity Method</h3>
+      <li> Click <a href="rv/worksheet.html"> here</a>  for some activities that use an orbit modeler to simulate the effects of a plant orbiting a star. We can use some of these effects to detect planets around other stars!
+       </li>
+
+        <h3 > How to make a ball bounce with Python</h3>
+        <li>
+          Click <a href="python/bouncing_ball.html"> here </a> for an introductory Python lesson which models the physics of a bouncing ball and animates it with Python. 
+        </li>
+    </ul>
   </div>
 
-    <script>
-      var theCanvas = document.getElementById("theCanvas");
-      var theContext = theCanvas.getContext("2d");
-      var trailCanvas = document.getElementById("trailCanvas");
-      var trailContext = trailCanvas.getContext("2d");
 
-      var eSlider = document.getElementById('eSlider');
-      var aSlider = document.getElementById('aSlider');
-      var mSlider = document.getElementById('mSlider');
-
-      var NewtG  = 4*Math.PI*Math.PI;
-      var VtoKms = 4.74057172;
-      var VtoMs = VtoKms * 1000;
-      var SuntoEarth = 332948.6;
-      var SuntoJupiter = 1047.2;
-      var SuntoNeptune = 19347.;
-      var Moving = true;
-
-      var timer;
-
-
-      var ecc,semia, PlanetMass,PlanetSize;
-
-      var ReducedMass,mtot,sfac, AuPerPixel;
-      var SunX, SunY, PlanetX, PlanetY;
-      var SunVx, SunVy, PlanetVx, PlanetVy, SunVr;
-      var PlanetColor;
-
-      var dt,dt2;
-      var totaltime = 0;
-
-      // Plotting
-      var dpsS = []; // dataPoints
-      var dpsP = [];
-      var dps =[];
-      var dps2 = [];
-      var dps2S = [];
-      var dpsR=[];
-      var chart,chart2;
-
-      var chartxP = 0;
-      var chartyP = 0;
-      var chartxS = 0;
-      var chartyS = 0;
-      var chartx2, charty2, chartR;
-
-
-      var dataLength = 600; // number of dataPoints visible at any point
-      var PointsPerOrbit = 200;
-      var count=0;
-      var timeResolution;  // Data will be taken every timeResolution years
-      var fps = 60;
-
-
-      window.onload = initVars();
-
-
-    </script>
 </body>
 
 </html>

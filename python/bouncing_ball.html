@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="bouncing_ball.css">
+
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <title>How to make a ball bounce with Python-An Introduction to Numerical Modeling</title>
+</head>
+
+<body style="font-family:sans-serif;
+             font-size:15px;
+             width:800px;
+             background-color:#E6E6E6 ;">
+
+  <h1 style="font-size:24px; text-align:center;">How to make a ball bounce with Python</h1>
+  <h2  style="text-align:center;">An Introduction to Numerical Modeling</h2>
+
+  <h2 >Introduction</h2>
+
+<p>
+  	In this activity we will explore how to use Python to solve the equations of motion for a ball thrown off of a ledge.  You should have some experience with Python syntax at this point, but feel free to use <a href="https://www.google.com/">Google</a>, the <a href="https://docs.python.org/2/" > Python documentation </a>, or the <a href ="https://www.codecademy.com/articles/glossary-python">Codecademy glossary </a> to refresh your memory.
+</p>
+<p>
+  For those with a lot of Python experience, there are some challenges at the end of the activity that should be more than enough to do.
+</p>
+
+  <h2>A simple solver </h2>
+
+<p>
+  	Before we start coding, let’s get familiar with how we can solve for the position and velocity of our ball as a function of time. The idea is to use the definitions of position, velocity, and acceleration that involve a small time interval, \(\Delta t\).
+</p>
+
+  $$ v = \frac{\Delta x}{\Delta t}$$
+  $$ a = \frac{\Delta v}{\Delta t}$$
+
+For our freely-falling ball, \( a = - 9.8 \, \text{m} \, \text{s}^{-2} \). Given the initial position and the initial velocity, we can solve for the <i> change</i> in position and velocity over the time interval \(\Delta t\).
+  $$ \Delta x = v \Delta t $$
+  $$ \Delta v = a \Delta t $$
+
+  Let \(x_i\) and \(v_i\) be the initial position and velocity and  \(x_f\) and \(v_f\) denote the position and velocity after the time interval \(\Delta t\). We can use the above equations, and \(\Delta x = x_f - x_i\), \(\Delta v = v_f - v_i\), to solve for  \(x_f\) and \(v_f\).
+
+  $$x_f = x_i + v_i \Delta t$$
+  $$v_f = v_i + a \Delta t$$
+
+  Here we made the assumption that the acceleration is constant and that \(v=v_i\) in the update equation for the position. We will see later whether or not this is a good assumption.
+
+  <h2> Let’s start coding </h2>
+
+<p>
+  	You will be filling in some missing code in the Python file, <a href="bouncing_ball.py" >bouncing_ball.py <a>. To download the file, right click it and select Save Link As. This should download the program with the .py extension. Open up the file by double clicking it. The Canopy Python environment should open up and you should see the code in the Editor window. Here's what you should see if you sucessfully downloaded and opened the file,
+</p>
+<br> <br> <br>
+
+<div class="image">
+  <img src='canopy_ss.png' style="width:600px;height=400px;">
+</div>
+<br> <br> <br>
+  Take a look at the different functions, their comments, and overall structure of the program. The main functions that we’ll be dealing with are the <font color='blue' >update </font> functions and the <font color='blue' >evolve</font> function. The flow of the program looks like this,
+<br> <br> <br>
+
+<div class="image">
+  <img src='bouncing_ball_diagram.svg' style="width:400px;height=400px;">
+</div>
+
+<br> <br> <br>
+<p>
+  The entry point for the program is the evolve function. This function takes the initial velocity, height of the ball, and increment in time, \(\Delta t\). With these initial conditions, it sets the initial position and velocity of the ball (in two dimensions), sets up the plotting environment, and starts the main loop that advances the ball forward in time.
+</p>
+<br> <br> <br>
+
+<div class="image">
+  <img src='evolve_init_func.png' style="width:600px;height=400px;"> <br>
+</div>
+
+<br> <br> <br>
+
+As our first task, we need to complete the missing pieces of the <font color='blue' >update_simple </font> function.
+
+<br> <br> <br>
+<div class="image" >
+  <img src='update_simple_func.png' style="width:600px;height=400px;">
+</div>
+
+<br> <br> <br>
+<p>
+  	<font color='red'> <b> Fill in the missing pieces of the <font color='blue'>update_simple </font> function where there is the comment </b> </font> <font color='grey'># FIX ME! </font>. Use the update equations for \(x_f\) and \(v_f\) from above. What is the acceleration in the x and y directions? Also be sure to increment the time by \(\Delta t\)!
+</p>
+<p>
+  	Once you’ve filled in the missing pieces for the <font color='blue' >update_simple</font> function. Hit the Run button in the toolbar above the editor. This will run the code in the editor window and allow you to access all of the functions in the Python terminal. Now call the evolve function with the arguments <font color='blue'>evolve</font>( 5, 15, 10, 30, 0.1). What do these arguments represent?
+</p>
+<br> <br> <br>
+<div class="image" >
+  <img src='function_call.png' style="width:600px;height=400px;">
+</div>
+<br> <br> <br>
+  	If you filled in the missing code properly, you should see a window pop up with four plots.
+<ul>
+  <li>
+    The top left plot shows an animation of the ball bouncing.
+  </li>
+  <li>
+    The top right plot shows the x and y velocities of the ball over time.
+  </li>
+  <li>
+  The bottom left plot shows the x and y positions of the ball over time.
+  </li>
+  <li>
+  The bottom right plot shows the kinetic and potential energies of the ball over time.
+  </li>
+</ul>
+  Does anything strange or unphysical happen to the ball as it bounces? Look at both the ball bouncing as well as the energy plots. What should be happening? At the end of the simulation your plot should look like this,
+
+<br> <br> <br>
+<div class="image">
+  <img src='simple_output.svg' style="width:600px;height=400px;"> <br>
+</div>
+<br> <br> <br>
+
+
+  <h2> An energy conserving update scheme </h2>
+
+<p>
+  	The problem with our simple update algorithm from above is that it does not conserve energy. We would like to create an update scheme that conserves the balls energy at all times. To do this we can use what is called a drift-kick-drift (DKD) scheme (also called the Leapfrog method or the Velocity-Verlet method). The algorithm is split up into three steps,
+  </p>
+  <ul>
+  <li> <b>Drift</b>:  Slide the particle at its current velocity for a half time interval, \(\Delta t/2\).
+  </li>
+  <li>
+  <b>Kick</b>: Give the particle a “kick” in velocity by accelerating it for a full time interval,  \(\Delta t\).
+</li>
+<li>
+  <b>Drift</b>: Slide the particle again at its new velocity for a half time interval,  \(\Delta t/2\).
+</li>
+</ul>
+<p>
+  	Translate these three steps into update equations and code them up in the missing lines of the <font color='blue' >update_leapfrog</font> function. Don't forget to update the time and return the new positions and velocities! <font color='red'><b>Before you start writing code, write down the algebraic equations for x_f and v_f in the same way as we did before. </b></font>
+</p>
+<br> <br> <br>
+<div class="image">
+  <img src='update_leapfrog_func.png' style="width:600px;height=400px;">
+</div>
+<br> <br> <br>
+
+<p>
+  	<font color='red'> <b> In the evolve function, modify the line which calls the <font color='blue' >update_simple</font> function to call the new <font color='blue' >update_leapfrog</font> function </b> </font>. Hit the Run button again to load all of the changes you’ve made. Now evolve the system by calling the evolve function with the same input values as before, <font color='blue' >evolve</font>( 5, 15, 10, 30, 0.1). Look at the energy plot as the ball bounces. Have we fixed the problem of energy conservation? Your final plot should look like this,
+</p>
+<br> <br> <br>
+<div  class="image">
+  <img src='leapfrog_output.svg' style="width:600px;height=400px;"> <br>
+</div>
+<br> <br> <br>
+<p>
+  <font color='red'> <b> Run the <font color='blue'>evolve</font> function for five different combinations of initial speed and direction. Save the final images using the save button on the plotting window (the "floppy disk" image).</b></font>
+</p>
+
+
+  <h2> Challenge: Making our ball more realistic </h2>
+
+<p>
+  	Now that we have a ball that can bounce perfectly elastically, let’s add in some inelasticity into our ball. When a real ball bounces, it deforms slightly. When it deforms it heats up due to friction in the material and the energy that went into the heat is lost forever. This suggests that the kinetic energy in the ball before it bounces is greater than the kinetic energy in the ball after it bounces. We can parametrize this with the coefficient of restitution. This coefficient is a number between 0 and 1 that relates the y-velocity of the ball before it bounces to the y-velocity of the ball after it bounces. A coefficient of restitution equal to 1 implies that the ball is perfectly elastic and that there is no deformation of the ball as it bounces. A coefficient of 0 implies that the ball sticks to the ground completely and doesn’t bounce at all.
+</p>
+<p>
+  	Add a new function called <font color='blue' >update_dissipative</font> to the program. This function should be the same as the <font color='blue'>update_leapfrog</font> function except in the lines of code that handle the ball bouncing. Define a new variable that holds the value of the coefficient of restitution and modify the new y-velocity that the ball has after the bounce to include the effect of deformation discussed above.
+</p>
+<p>
+  	Be sure to evolve your squishy bouncing ball by calling the <font color='blue' >update_dissipative</font> function inside the evolve function and see if it behaves as you would expect.
+</p>
+
+
+  <h2> More advanced material </h2>
+
+  Here are some things to try if you breezed through the activity.
+
+
+  <ol>
+  <li>
+  Take a look at the plotting functions and try to understand how Python plotting works if you’ve never done it before.
+  <ul>
+    <br>
+    <li>
+      Try to plot another quantity in one of the plots.
+    </li>
+    <li>
+      Change the color and width of the lines.
+    </li>
+    <li>
+      Change what shape the points are.
+    </li>
+    <li>
+      Add in more background details in the top left plot.
+    </li>
+  </ul>
+</li> <br>
+  <li>
+  Modify the program so that it uses Python <font color='orange' >Classes</font>. Make a ball class that has x,y,vx,vy attributes, and bounce and move methods.
+</li> <br>
+  <li>
+  How would you implement a wall to the right? Imagine the problem of throwing a ball against the wall. What if you also put in a wall to the left? Or someone that could catch the ball if it’s at the right height?
+</li> <br>
+  <li>
+  Add in air resistance or spin (one is much more difficult than the other!).
+</li> <br>
+  <li>
+    Make the acceleration due to gravity a function of the height of the ball. Imagine throwing the ball from the Moon.
+  </li> <br>
+  <li>
+    Modify the program to use one of Python's differential equation solvers. For example the the <a href="http://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.integrate.odeint.html#scipy.integrate.odeint" >odeint </a> integrator from the SciPy library.
+  </li> <br>
+  <li>
+  Was the coding style of this program different than your own?
+  </li>
+</ol>
+
+<h2> Some concluding remarks </h2>
+
+<p>
+  Hopefully by the end of this activity you have a better idea about how to solve the equations of motion of an object numerically using Python. The basic idea was to take small steps in time and then change the objects position and velocity by using their definitions as rate of change quantities (i.e \( v = \frac{\Delta x}{\Delta t}\)).
+</p>
+<p>
+  Additionally, we validated our program by relying on simple physical principles such as energy conservation. This is a key thing to remember when coding up solutions to physics problems. Your program may not crash but the output may not make sense physically. It's always important to test your program versus known physics; this is how we know we did the programming correctly!
+</p>
+<p>
+  I'd also encourage you to try out the ideas laid out in the advanced material section. They will provide extra practice with programming in Python, and also extra practice in doing physics.
+</p>
+<br> <br> <br>
+
+
+
+
+<footer> Written by Adam Dempsey. <br> CIERA, Northwestern University.</footer>
+
+  </body>
+</html>
