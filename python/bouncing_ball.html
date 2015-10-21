@@ -50,7 +50,7 @@ For our freely-falling ball, \( a = - 9.8 \, \text{m} \, \text{s}^{-2} \). Given
   <h2> Let’s start coding </h2>
 
 <p>
-  	You will be filling in some missing code in the Python file, <a href="bouncing_ball.py" >bouncing_ball.py <a>. To download the file, right click it and select Save Link As. This should download the program with the .py extension. Open up the file by double clicking it. The Canopy Python environment should open up and you should see the code in the Editor window. Here's what you should see if you sucessfully downloaded and opened the file,
+  	You will be filling in some missing code in the Python file, <a href="bouncing_ball.py" >bouncing_ball.py <a>. To download the file, either click it or right click it and select Save Link As. This should download the program with the .py extension. Open up the file by double clicking it. The Canopy Python environment should open up and you should see the code in the Editor window. Here's what you should see if you sucessfully downloaded and opened the file,
 </p>
 <br> <br> <br>
 
@@ -123,7 +123,7 @@ As our first task, we need to complete the missing pieces of the <font color='bl
   <h2> An energy conserving update scheme </h2>
 
 <p>
-  	The problem with our simple update algorithm from above is that it does not conserve energy. We would like to create an update scheme that conserves the balls energy at all times. To do this we can use what is called a drift-kick-drift (DKD) scheme (also called the Leapfrog method or the Velocity-Verlet method). The algorithm is split up into three steps,
+  	The problem with our simple update algorithm from above is that it does not conserve energy. We would like to create an update scheme that conserves the ball's energy at all times. To do this we can use what is called a drift-kick-drift (DKD) scheme (also called the Leapfrog method or the Velocity-Verlet method). The algorithm is split up into three steps,
   </p>
   <ul>
   <li> <b>Drift</b>:  Slide the particle at its current velocity for a half time interval, \(\Delta t/2\).
@@ -160,7 +160,7 @@ As our first task, we need to complete the missing pieces of the <font color='bl
   <h2> Challenge: Making our ball more realistic </h2>
 
 <p>
-  	Now that we have a ball that can bounce perfectly elastically, let’s add in some inelasticity into our ball. When a real ball bounces, it deforms slightly. When it deforms it heats up due to friction in the material and the energy that went into the heat is lost forever. This suggests that the kinetic energy in the ball before it bounces is greater than the kinetic energy in the ball after it bounces. We can parametrize this with the coefficient of restitution. This coefficient is a number between 0 and 1 that relates the y-velocity of the ball before it bounces to the y-velocity of the ball after it bounces. A coefficient of restitution equal to 1 implies that the ball is perfectly elastic and that there is no deformation of the ball as it bounces. A coefficient of 0 implies that the ball sticks to the ground completely and doesn’t bounce at all.
+  	Now that we have a ball that can bounce perfectly elastically, let’s add in some inelasticity into our ball. When a real ball bounces, it deforms slightly. When it deforms it heats up due to friction and the energy that went into the heat is lost forever. This suggests that the kinetic energy in the ball before it bounces is greater than the kinetic energy in the ball after it bounces. We can parametrize this with the coefficient of restitution. This coefficient is a number between 0 and 1 that relates the y-velocity of the ball before it bounces to the y-velocity of the ball after it bounces. A coefficient of restitution equal to 1 implies that the ball is perfectly elastic and that there is no deformation of the ball as it bounces. A coefficient of 0 implies that the ball sticks to the ground completely and doesn’t bounce at all.
 </p>
 <p>
   	Add a new function called <font color='blue' >update_dissipative</font> to the program. This function should be the same as the <font color='blue'>update_leapfrog</font> function except in the lines of code that handle the ball bouncing. Define a new variable that holds the value of the coefficient of restitution and modify the new y-velocity that the ball has after the bounce to include the effect of deformation discussed above.
@@ -195,7 +195,7 @@ As our first task, we need to complete the missing pieces of the <font color='bl
   </ul>
 </li> <br>
   <li>
-  Modify the program so that it uses Python <font color='orange' >Classes</font>. Make a ball class that has x,y,vx,vy attributes, and bounce and move methods.
+  Modify the program so that it uses Python <font color='orange' >Classes</font>. Make a ball class that has x, y, vx, and vy attributes, and bounce and move methods.
 </li> <br>
   <li>
   How would you implement a wall to the right? Imagine the problem of throwing a ball against the wall. What if you also put in a wall to the left? Or someone that could catch the ball if it’s at the right height?
@@ -207,7 +207,7 @@ As our first task, we need to complete the missing pieces of the <font color='bl
     Make the acceleration due to gravity a function of the height of the ball. Imagine throwing the ball from the Moon.
   </li> <br>
   <li>
-    Modify the program to use one of Python's differential equation solvers. For example the the <a href="http://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.integrate.odeint.html#scipy.integrate.odeint" >odeint </a> integrator from the SciPy library.
+    Modify the program to use one of Python's differential equation solvers. For example the <a href="http://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.integrate.odeint.html#scipy.integrate.odeint" >odeint </a> integrator from the SciPy library.
   </li> <br>
   <li>
   Was the coding style of this program different than your own?
@@ -223,7 +223,7 @@ As our first task, we need to complete the missing pieces of the <font color='bl
   Additionally, we validated our program by relying on simple physical principles such as energy conservation. This is a key thing to remember when coding up solutions to physics problems. Your program may not crash but the output may not make sense physically. It's always important to test your program versus known physics; this is how we know we did the programming correctly!
 </p>
 <p>
-  I'd also encourage you to try out the ideas laid out in the advanced material section. They will provide extra practice with programming in Python, and also extra practice in doing physics.
+  I'd also encourage you to try out the ideas laid out in the advanced material section. Even if you do only one a day, or one a week, they will provide extra practice with programming in Python, and also extra practice in doing physics.
 </p>
 <br> <br> <br>
 

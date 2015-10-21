@@ -37,10 +37,10 @@ def update_simple(x,y,vx,vy,t,dt):
     time by dt. """
 
 # Set the variables to their new values using v = dx/dt and a = dv/dt
-    vx_new =  vx          # FIX ME!
-    vy_new =  vy          # FIX ME!
-    x_new =     x        # FIX ME!
-    y_new =      y       # FIX ME!
+    vx_new =            # FIX ME!
+    vy_new =            # FIX ME!
+    x_new =             # FIX ME!
+    y_new =            # FIX ME!
 
 
 # What happens if the ball hits the wall.
