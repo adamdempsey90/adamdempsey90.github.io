@@ -37,10 +37,10 @@ def update_simple(x,y,vx,vy,t,dt):
     time by dt. """
 
 # Set the variables to their new values using v = dx/dt and a = dv/dt
-    vx_new =            # FIX ME!
+    vx_new =           # FIX ME!
     vy_new =            # FIX ME!
-    x_new =             # FIX ME!
-    y_new =            # FIX ME!
+    x_new =            # FIX ME!
+    y_new =           # FIX ME!
 
 
 # What happens if the ball hits the wall.
@@ -53,7 +53,7 @@ def update_simple(x,y,vx,vy,t,dt):
 # Advance the simulation time t by dt  on the next 2 lines
         t =  t     # FIX ME!
     else:
-        t =  t      # FIX ME!
+        t =  t     # FIX ME!
 
     return x_new,y_new,vx_new,vy_new,t
 
@@ -65,18 +65,18 @@ def update_leapfrog(x,y,vx,vy,t,dt):
 
     # First Drift
 
-#    vx_new =        # FIX ME!
-#    vy_new =        # FIX ME!
+ #   x_new =       # FIX ME!
+ #   y_new =       # FIX ME!
 
     # Now Kick
 
-#    x_new =         # FIX ME!
-#    y_new =         # FIX ME!
+ #   vx_new =          # FIX ME!
+ #   vy_new =       # FIX ME!
 
     # Second Drift
 
-#    vx_new =        # FIX ME!
-#    vy_new =        # FIX ME!
+ #   x_new =         # FIX ME!
+ #   y_new =       # FIX ME!
 
 
 # Special updates for when the ball hits the floor
@@ -89,9 +89,9 @@ def update_leapfrog(x,y,vx,vy,t,dt):
 # Advance the simulation time t by dt  on the next 2 lines
         t = t    # FIX ME!
     else:
-        t = t    # FIX ME!
+        t = t   # FIX ME!
 
-    return     # FIX ME!
+    return   # FIX ME!
 
 def update_dissipative(x,y,vx,vy,t,dt):
     """ Update the position and velocity of the bouncing ball over a time dt,
@@ -111,12 +111,13 @@ def initialize_plot(h,x,y,vx,vy):
     axes[0,0].set_xlabel('x')
     axes[0,0].set_ylabel('y')
     axes[0,0].set_title('t = 0')
-    axes[0,0].plot([0,0],[0,h],'-k',linewidth=3)
-    axes[0,0].plot([-3,0],[h,h],'-k',linewidth=3)
-    line, = axes[0,0].plot(x,y,'ob',markersize=20)
+    axes[0,0].plot([0,0],[0,h],'-k',linewidth=4)
+    axes[0,0].plot([-3,0],[h,h],'-k',linewidth=4)
+    line, = axes[0,0].plot(x,y,'-m',linewidth=3)
+    lineb, = axes[0,0].plot(x,y,'ob',markersize=20)
     axes[0,0].set_xlim(-3,4*h)
     axes[0,0].set_ylim(0,3*h)
-    data.append(line)
+    data.append((line,lineb))
 
 # Next do x,y versus time,
 
@@ -157,8 +158,11 @@ def initialize_plot(h,x,y,vx,vy):
 
 def update_plot(fig,axes,data,t,h,x,y,vx,vy):
 # update x,y plot
-    data[0].set_xdata(x)
-    data[0].set_ydata(y)
+    line,lineb = data[0]
+    lineb.set_xdata(x)
+    lineb.set_ydata(y)
+    line.set_xdata( np.append(line.get_xdata(), x))
+    line.set_ydata( np.append(line.get_ydata(), y))
     axes[0,0].set_title('t = %.2f' % t)
     if x > axes[0,0].get_xlim()[1]:
         axes[0,0].set_xlim(-3,2*x)
