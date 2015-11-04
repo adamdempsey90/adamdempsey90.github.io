@@ -93,8 +93,8 @@ def evolve(l1,l2,m1,m2,p1,p2,tend,dt):
     l2 = Length of the second bob.
     m1 = Mass of the first bob.
     m2 = Mass of the second bob.
-    theta1 = Angle of the first bob with respect to the vertical.
-    theta2 = Angle of the second bob with respect to the first bob.
+    p1 = Angle of the first bob with respect to the vertical.
+    p2 = Angle of the second bob with respect to the first bob.
     tend = Total length of the simulation.
     dt = Time between plot updates.  
     """
@@ -103,8 +103,6 @@ def evolve(l1,l2,m1,m2,p1,p2,tend,dt):
 
     t = np.arange(int(tend/dt)+1)*dt
 
-    #x1,y1,x2,y2 = get_positions(b1,b2)
-    #e1,e2 = get_energies(b1,b2)
     
     i = 1
     for i,ti in enumerate(t[1:],start=1):      
