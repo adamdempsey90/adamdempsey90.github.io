@@ -10,9 +10,9 @@ class Bob():
     """
     def __init__(self,length, mass, initial_angle):
         self.l = length 
-        self.m =        # FIX ME!  Set this line to be equal to the mass variable
+        self.m =  mass      # FIX ME!  Set this line to be equal to the mass variable
         self.theta = initial_angle
-        self.v =        # FIX ME!  Set the v variable equal to 0
+        self.v =  0      # FIX ME!  Set the v variable equal to 0
         self.x = 0
         self.y = 0
         self.p = 0 
@@ -43,11 +43,13 @@ def initialize_plots(b1,b2):
     # FIX ME!
     # On the line below pass the xlist and ylist variables to the plot function
     # Additionally, set the linewidth=3 by using the linewidth variable. 
-    line, = axes[0,0].plot(      , '-bo', markersize=10,        ) # FIX ME! 
+    line, = axes[0,0].plot( xlist,ylist     , '-bo', markersize=10,  linewidth=3      ) # FIX ME! 
     
     line1, = axes[0,0].plot(b1.x,b1.y,'-b',linewidth=2)
     line2, = axes[0,0].plot(b2.x,b2.y,'-r',linewidth=2)
     axes[0,0].set_xlim(-total_l,total_l)
+    
+    
     axes[0,0].set_ylim(-total_l,total_l)
     axes[0,0].set_title('t = 0',fontsize=20)
     axes[0,0].set_xlabel('x',fontsize=20)
@@ -82,7 +84,7 @@ def initialize_plots(b1,b2):
     line2, = axes[1,1].plot(0,b2.energy,'-r')
     line3, = axes[1,1].plot(0,b1.energy+b2.energy,'-m')
     data.append([line1,line2,line3])
-    axes[0,0].plot(xlist,ylist,'-o',color='grey',linewidth=3)
+    axes[0,0].plot(xlist,ylist,'-o',color='grey',linewidth=3,markersize=10)
     
     plt.show()
     return fig,axes,data
@@ -271,3 +273,4 @@ def update_plots(b1,b2,t,fig,axes,data):
     plt.pause(1e-5)
     plt.show()
     return
+    
