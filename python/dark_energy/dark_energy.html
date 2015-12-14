@@ -2,32 +2,134 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="dark_energy.css">
+    <link rel="stylesheet" type="text/css" href="../../bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <style>
+      .navbar-form input, .form-inline input {
+        width:auto;
+      }
+      header {
+        height:280px;
+      }
+      #nav.navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: 0%;
+        z-index:10;
+        /*background-color: #CED6D6;*/
+      }
+      #nav.affix {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          left: 0%;
+          z-index:10;
+          /*background-color: #CED6D6;*/
+      }
+      #sidebar.nav {
+        position: fixed;
+        top: 80px;
+        left: 0%;
+      }
+      #sidebar.affix-top {
+          position: static;
+      }
 
+      #sidebar.affix {
+          position: fixed;
+          top: 80px;
+          left: 0%;
+      }
+    </style>
     <script type="text/javascript"
       src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" type="text/css" href="dark_energy.css">
+
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script> -->
     <title>(Re)Discovering Dark Energy and the Expanding Universe</title>
 </head>
 
+<!-- Begin Navbar -->
+<div id="nav">
+  <div class="navbar navbar-default navbar-static">
+    <div class="container">
+  <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!-- <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span> -->
+      </a>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index.html">Home</a></li>
+          <li class="divider"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Python Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="../bouncing_ball/bouncing_ball.html">Bouncing Ball</a></li>
+              <li> <a href="../double_pendulum/double_pendulum.html">Double Pendulum</a> </li>
+              <li> <a href="#">Dark Energy</a> </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HTML5 Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li> <a href="#">Keplerian Orbits</a> </li>
+            </ul>
+          </li>
+        </ul>
 
+      </div>
+    </div>
+  </div><!-- /.navbar -->
+</div>
+
+
+
+<body position= relative;>
+<!-- <body style="font-family:sans-serif;
+             font-size:15px;
+             width:800px;
+             height=100%;
+             margin-left:auto;
+             margin-right:auto;">
+              -->
+
+  <!-- Begin Body -->
+  <div class="container">
+   <div class="row">
+         <div class="col-sm-3">
+             <ul id="sidebar" class="nav nav-pills nav-stacked" >
+                 <li><a href="#title">(Re)Discovering Dark Energy.</a></li>
+                 <li><a href="#introduction">Introduction.</a></li>
+                 <li><a href="#thedata">The Data. </a></li>
+                 <li class="divider"></li>
+                 <li><a href="#python">Python.</a></li>
+                 <li><a href="#hubbleslaw">Hubble's Law.</a></li>
+                 <li><a href="#approximation">An approximation.</a></li>
+                 <li><a href="#acceleratinguniverse">The Accelerating Universe. </a></li>
+                 <li><a href="#extras">Extras.</a></li>
+               </ul>
+         </div>
+
+<div class="col-sm-9">
+<div id="title">
 <h1>(Re)Discovering Dark Energy and the Expanding Universe: Fitting Data with Python</h1>
 
 <div class='image'>
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/DMPie_2013.svg" style="width:600px;height=400px;" alt="alt text" title="" />
 </div>
 <br><br><br>
-
-<body style="font-family:sans-serif;
-             font-size:15px;
-             width:800px;
-             height=100%;
-             margin-left:auto;
-             margin-right:auto;
-             background-color:#E6E6E6 ;">
-
-
-
+<hr class="col-sm-12">
+<div id="introduction">
 <h2>Introduction</h2>
 
 <p>Through observations of the local and distance Universe, astronomers have determined that our Universe is made up of three types of matter and energy:</p>
@@ -50,7 +152,8 @@
 <p>As we will see in this activity, our Universe is expanding. In fact, it is not only expanding but doing so at an accelerated rate. The unknown mechanism that causes this <em>observed</em> accelerated expansion rate we call <strong>Dark Energy</strong>.</p>
 
 
-
+<hr class="col-sm-12">
+<div id="thedata">
 <h2>The Data</h2>
 
 <p>For this activity we will be using real <a href="http://braeburn.pha.jhu.edu/~ariess/R06/">data</a> from a group lead by the Nobel Prize winner Adam Riess. His team measured the distances and redshifts to hundreds of galaxies by observing these Type Ia Supernovae.  We will be using that same data to discover Dark Energy.</p>
@@ -60,7 +163,8 @@
 <p>We will be using Python to do our data analysis. With the numerical (Numpy) and scientific (Scipy) libraries, plotting and fitting the supernovae data will be a breeze.</p>
 
 <p>As always, remember to use all available resources if you get stuck with any Python syntax. Some good resources are <a href="https://www.google.com/">Google</a>, the <a href="https://docs.python.org/2/">Python documentation</a> and the <a href="https://www.codecademy.com/articles/glossary-python">Codecademy glossary</a>.</p>
-
+<hr class="col-sm-12">
+<div id="python">
 <h2>Python</h2>
 
 <p>The Python code for this activity is split into two files. The linear fit script is <a href="linear_fit.py">here</a> , and the quadratic fit script is <a href="quadratic_fit.py">here</a>. Download both of these and open them up in the Canopy editor.</p>
@@ -69,6 +173,8 @@
 
 <p>Part one will focus on fitting a linear relationship between supernova distance and redshift. Part two will fit a quadratic relationship between supernova distance and redshift.</p>
 
+<hr class="col-sm-12">
+<div id="hubbleslaw">
 <h2>Hubble's Law</h2>
 
 <p>Open up the <a href="linear_fit.py">linear_fit.py</a> script and read over the comments and code. The script loads the data by opening the sn</em>data.txt file and then fits the data to a linear function given by,</p>
@@ -91,6 +197,8 @@
 
 <p>The green band around the best fit line shows the spread in our fit based on the spread in the fitted value of the Hubble Constant. </p>
 
+<hr class="col-sm-12">
+<div id="approximation">
 <h2>An approximation</h2>
 
 <p>Hubble’s Law is really only valid at very small redshifts. Try fitting the data again with the same fitting function but this time only fit a small subset of the data. Uncomment the bottom lines of the linear_fit.py script and fix the remaining missing pieces of code and rerun the script by hitting the green play button at the top. This time you should see a second plot pop up that shows only the data with redshift less than 0.1. How does this value of the Hubble constant compare with the best estimates to date (use Google to find this)?</p>
@@ -99,6 +207,9 @@
 <img src="linear_results2.png" style="width:600px;height=400px;" alt="alt text" title="" />
 </div>
 <br><br><br>
+
+<hr class="col-sm-12">
+<div id="acceleratinguniverse">
 <h2>The Accelerating Universe</h2>
 
 <p>In the previous section we found that a linear relation between redshift and distance was not good enough to fit the full domain of observed supernovae data.  We can go one step further and add a quadratic term to the fitting function.  This introduces a new parameter that is historically called the deceleration parameter q. If q is non-zero and negative this suggests that the further away a galaxy is from us, the faster it is receding from us.  Our fitting function is now,</p>
@@ -118,6 +229,8 @@ Note that we now have two parameters, H and q.
 
 <p>Notice that we still haven’t got a good fit to the data at redshift greater than one.  In reality the fitting function is much more complicated and can’t be written as a simple polynomial.  But for small redshifts it can be approximated by one, as we’ve just seen.  </p>
 
+<hr class="col-sm-12">
+<div id="extras">
 <h2> Extras </h2>
 
 Some extra things to do if you've discovered Dark Energy are:
@@ -137,3 +250,16 @@ Some extra things to do if you've discovered Dark Energy are:
 
 </body>
 </html>
+<script>
+$('#nav').affix({
+      offset: {
+        top: $('header').height()
+      }
+});
+
+$('#sidebar').affix({
+      offset: {
+        top: 200
+      }
+});
+</script>

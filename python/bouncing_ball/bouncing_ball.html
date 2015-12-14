@@ -2,26 +2,131 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="bouncing_ball.css">
+    <link rel="stylesheet" type="text/css" href="../../bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+  <style>
+    .navbar-form input, .form-inline input {
+    	width:auto;
+    }
+    header {
+    	height:280px;
+    }
+    #nav.navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: 0%;
+      z-index:10;
+      /*background-color: #CED6D6;*/
+    }
+    #nav.affix {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: 0%;
+        z-index:10;
+        /*background-color: #CED6D6;*/
+    }
+    #sidebar.nav {
+      position: fixed;
+      top: 80px;
+      left: 0%;
+    }
+    #sidebar.affix-top {
+        position: static;
+    }
 
+    #sidebar.affix {
+        position: fixed;
+        top: 80px;
+        left: 0%;
+    }
+  </style>
     <script type="text/javascript"
       src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript"
+      src=../../bootstrap.min.js>
+    </script> -->
+
+
     <title>How to make a ball bounce with Python-An Introduction to Numerical Modeling</title>
 </head>
 
-<body style="font-family:sans-serif;
+
+<!-- Begin Navbar -->
+<div id="nav">
+  <div class="navbar navbar-default navbar-static">
+    <div class="container">
+  <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!-- <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span> -->
+      </a>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index.html">Home</a></li>
+          <li class="divider"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Python Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Bouncing Ball</a></li>
+              <li> <a href="../double_pendulum/double_pendulum.html">Double Pendulum</a> </li>
+              <li> <a href="../dark_energy/dark_energy.html">Dark Energy</a> </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HTML5 Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li> <a href="#">Keplerian Orbits</a> </li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div><!-- /.navbar -->
+</div>
+
+
+<body position= relative;>
+      <!-- style="font-family:sans-serif;
              font-size:15px;
              width:800px;
+             margin-left: 10%;
              height=100%;
-             margin-left:auto;
-             margin-right:auto;
-             background-color:#E6E6E6 ;">
+             margin-right:10%;
+             background-color; #FFF6F6; "> -->
+             <!-- data-spy="scroll" data-target="#myScrollspy" data-offset="15"> -->
+             <!-- background-color:#E6E6E6 ;"> -->
 
+ <!-- Begin Body -->
+ <div class="container">
+ 	<div class="row">
+   			<div class="col-sm-3">
+       			<ul id="sidebar" class="nav nav-pills nav-stacked" >
+                <li><a href="#title">How to make a ball bounce with Python.</a></li>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#simplesolver">A simple solver </a></li>
+                <li class="divider"></li>
+                <li><a href="#startcoding">Let’s start coding</a></li>
+                <li><a href="#leapfrog">An energy conserving update scheme</a></li>
+                <li><a href="#challenge">Challenge: Making our ball more realistic</a></li>
+                <li><a href="#extras">More advanced material </a></li>
+                <li><a href="#conclusion">Some concluding remarks</a></li>
+ 				      </ul>
+        </div>
 
-  <h1 style="font-size:24px; text-align:center;">How to make a ball bounce with Python</h1>
-  <h2  style="text-align:center;">An Introduction to Numerical Modeling</h2>
-
+<div class="col-sm-9">
+<div id="title">
+  <h1>How to make a ball bounce with Python</h1>
+  <h2 >An Introduction to Numerical Modeling</h2>
+<hr class="col-sm-12">
+<div id="introduction">
   <h2 >Introduction</h2>
 
 <p>
@@ -30,7 +135,9 @@
 <p>
   For those with a lot of Python experience, there are some challenges at the end of the activity that should be more than enough to do.
 </p>
-
+</div>
+<hr class="col-sm-12">
+<div id="simplesolver">
   <h2>A simple solver </h2>
 
 <p>
@@ -50,11 +157,14 @@ For our freely-falling ball, \( a = - 9.8 \, \text{m} \, \text{s}^{-2} \). Given
   $$v_f = v_i + a \Delta t$$
 
   Here we made the assumption that the acceleration is constant and that \(v=v_i\) in the update equation for the position. We will see later whether or not this is a good assumption.
+</div>
+<hr class="col-sm-12">
 
+<div id="startcoding">
   <h2> Let’s start coding </h2>
 
 <p>
-  	You will be filling in some missing code in the Python file, <a href="bouncing_ball.py" >bouncing_ball.py <a>. To download the file, either click it or right click it and select Save Link As. This should download the program with the .py extension. Open up the file by double clicking it. The Canopy Python environment should open up and you should see the code in the Editor window. Here's what you should see if you sucessfully downloaded and opened the file,
+  	You will be filling in some missing code in the Python file, <a href="bouncing_ball.py" >bouncing_ball.py </a>. To download the file, either click it or right click it and select Save Link As. This should download the program with the .py extension. Open up the file by double clicking it. The Canopy Python environment should open up and you should see the code in the Editor window. Here's what you should see if you sucessfully downloaded and opened the file,
 </p>
 <br> <br> <br>
 
@@ -123,7 +233,10 @@ As our first task, we need to complete the missing pieces of the <font color='bl
 </div>
 <br> <br> <br>
 
+</div>
+<hr class="col-sm-12">
 
+<div id="leapfrog">
   <h2> An energy conserving update scheme </h2>
 
 <p>
@@ -160,7 +273,10 @@ As our first task, we need to complete the missing pieces of the <font color='bl
   <font color='red'> <b> Run the <font color='blue'>evolve</font> function for five different combinations of initial speed and direction. Save the final images using the save button on the plotting window (the "floppy disk" image).</b></font>
 </p>
 
+</div>
+<hr class="col-sm-12">
 
+<div id="challenge">
   <h2> Challenge: Making our ball more realistic </h2>
 
 <p>
@@ -173,7 +289,10 @@ As our first task, we need to complete the missing pieces of the <font color='bl
   	Be sure to evolve your squishy bouncing ball by calling the <font color='blue' >update_dissipative</font> function inside the evolve function and see if it behaves as you would expect.
 </p>
 
+</div>
+<hr class="col-sm-12">
 
+<div id="extras">
   <h2> More advanced material </h2>
 
   Here are some things to try if you breezed through the activity.
@@ -217,7 +336,10 @@ As our first task, we need to complete the missing pieces of the <font color='bl
   Was the coding style of this program different than your own?
   </li>
 </ol>
+</div>
+<hr class="col-sm-12">
 
+<div id="conclusion">
 <h2> Some concluding remarks </h2>
 
 <p>
@@ -230,11 +352,25 @@ As our first task, we need to complete the missing pieces of the <font color='bl
   I'd also encourage you to try out the ideas laid out in the advanced material section. Even if you do only one a day, or one a week, they will provide extra practice with programming in Python, and also extra practice in doing physics.
 </p>
 <br> <br> <br>
-
-
-
-
+</div>
+</div>
+</div>
+</div>
 <footer> Written by Adam Dempsey. <br> CIERA, Northwestern University.</footer>
 
-  </body>
+</body>
+
 </html>
+<script>
+$('#nav').affix({
+      offset: {
+        top: $('header').height()
+      }
+});
+
+$('#sidebar').affix({
+      offset: {
+        top: 200
+      }
+});
+</script>

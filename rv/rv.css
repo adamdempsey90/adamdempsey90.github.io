@@ -9,13 +9,12 @@
   /*cursor: pointer; -webkit-tap-highlight-color: rgba(0,0,0,0);*/
 }
 
-input[type=range][orient=vertical]
-{
-    writing-mode: bt-lr; /* IE */
-    -webkit-appearance: slider-vertical; /* WebKit */
+.range {
+    /*writing-mode: bt-lr; /* IE */
+    /*-webkit-appearance: slider-vertical; /* WebKit */
     width: 8px;
-    height: 175px;
-    padding: 0 5px;
+    height: 100px;
+    padding: 0;
 }
 input[type="range"]::-ms-tooltip {
   display: none;       /* hide readout in IE */
@@ -24,19 +23,21 @@ input[type="range"]::-ms-track {
   color: transparent;
 }
 
-.wrapper {
+#left-section {
 position: relative;
-width: 50%;
+width: 300px;
 height: 300px;
-float:left;
-background-color: #E6E6E6;
+float: left;
+left: 200px;
+/*background-color: #E6E6E6;*/
 color:black
 }
-.charts {
+#charts {
   position: relative;
-  float: left;
   height: 600px;
-  width: 100%;
+  width: 600px;
+  left: 80px;
+  float:left;
 }
 .wrapper canvas {
     position: absolute;
@@ -44,15 +45,20 @@ color:black
     left: 0;
 }
 
-.left-section{
- width: 300px;
- height: 300px;
- float: left;
-}
-.right-section {
-  width: 50%;
+
+#right-section {
+  position: relative;
+  width: 300px;
   height: 300px;
-  float:right;
-  background-color:#E6E6E6; 
+  float: left;
+  left: 220px;
+  /*background-color:#E6E6E6;*/
   color:black;
+}
+#bottom-section {
+position: relative;
+ width: 600px;
+ height: 300px;
+ float: bottom;
+ left: 80px;
 }
