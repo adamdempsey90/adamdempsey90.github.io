@@ -1,22 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> <title>Adam Dempsey's Github Homepage</title>
-  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <style>
+      .navbar-form input, .form-inline input {
+        width:auto;
+      }
+      header {
+        height:280px;
+      }
+      #nav.navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: 0%;
+        z-index:10;
+        /*background-color: #CED6D6;*/
+      }
+      #nav.affix {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          left: 0%;
+          z-index:10;
+          /*background-color: #CED6D6;*/
+      }
+      #sidebar.nav {
+        position: fixed;
+        top: 80px;
+        left: 0%;
+      }
+      #sidebar.affix-top {
+          position: static;
+      }
+
+      #sidebar.affix {
+          position: fixed;
+          top: 80px;
+          left: 0%;
+      }
+    </style>
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <title>Adam Dempsey's Github Homepage</title>
+  <!--  <link rel="stylesheet" type="text/css" href="bootstrap.min.css"> -->
 </head>
 
-<body style="font-family:sans-serif;
+
+
+
+<!-- Begin Navbar -->
+<div id="nav">
+  <div class="navbar navbar-default navbar-static">
+    <div class="container">
+  <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!-- <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span> -->
+      </a>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li class="divider"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Python Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="python/bouncing_ball/bouncing_ball.html">Bouncing Ball</a></li>
+              <li> <a href="python/double_pendulum/double_pendulum.html">Double Pendulum</a> </li>
+              <li> <a href="python/dark_energy/dark_energy.html">Dark Energy</a> </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HTML5 Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li> <a href="#">Keplerian Orbits</a> </li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div><!-- /.navbar -->
+</div>
+
+
+
+<!-- <body style="font-family:sans-serif;
              font-size:15px;
              width:800px;
              height=100%;
              margin-left:auto;
              margin-right:auto;
              background-color:#E6E6E6 ;">
+             -->
 
-    <h1 style="font-size:24px; text-align:center;">Physics and Astronomy Activities.</h1>
 
+             <body position= relative;>
 
-  <div>
+            <!-- <body style="width=80px;
+                 height=100%;
+                 margin-left:auto;
+                 margin-right:auto;">
+                 -->
+                
+    <div class="container">
+      <h1> Physics and Astronomy Activities </h1>
     <p>
       This page will house some of the activities and lessons I create for Physics and Astronomy classes. This is still in a very early stage, so pardon the mess!
     </p>

@@ -93,7 +93,7 @@
 </div>
 
 
-<body position= relative;>
+<body position= relative; data-spy="scroll" data-target="#myScrollspy">
       <!-- style="font-family:sans-serif;
              font-size:15px;
              width:800px;
@@ -107,7 +107,7 @@
  <!-- Begin Body -->
  <div class="container">
  	<div class="row">
-   			<div class="col-sm-3">
+   			<div class="col-sm-3" id="myScrollspy">
        			<ul id="sidebar" class="nav nav-pills nav-stacked" >
                 <li><a href="#title">How to make a ball bounce with Python.</a></li>
                 <li><a href="#introduction">Introduction</a></li>
@@ -125,8 +125,10 @@
 <div id="title">
   <h1>How to make a ball bounce with Python</h1>
   <h2 >An Introduction to Numerical Modeling</h2>
-<hr class="col-sm-12">
+  </div>
+  <hr>
 <div id="introduction">
+    <br><br>
   <h2 >Introduction</h2>
 
 <p>
@@ -136,8 +138,9 @@
   For those with a lot of Python experience, there are some challenges at the end of the activity that should be more than enough to do.
 </p>
 </div>
-<hr class="col-sm-12">
+<hr >
 <div id="simplesolver">
+    <br><br>
   <h2>A simple solver </h2>
 
 <p>
@@ -158,9 +161,9 @@ For our freely-falling ball, \( a = - 9.8 \, \text{m} \, \text{s}^{-2} \). Given
 
   Here we made the assumption that the acceleration is constant and that \(v=v_i\) in the update equation for the position. We will see later whether or not this is a good assumption.
 </div>
-<hr class="col-sm-12">
-
+<hr>
 <div id="startcoding">
+    <br><br>
   <h2> Let’s start coding </h2>
 
 <p>
@@ -234,9 +237,9 @@ As our first task, we need to complete the missing pieces of the <font color='bl
 <br> <br> <br>
 
 </div>
-<hr class="col-sm-12">
-
+<hr>
 <div id="leapfrog">
+    <br><br>
   <h2> An energy conserving update scheme </h2>
 
 <p>
@@ -274,9 +277,9 @@ As our first task, we need to complete the missing pieces of the <font color='bl
 </p>
 
 </div>
-<hr class="col-sm-12">
-
+<hr>
 <div id="challenge">
+    <br><br>
   <h2> Challenge: Making our ball more realistic </h2>
 
 <p>
@@ -290,9 +293,9 @@ As our first task, we need to complete the missing pieces of the <font color='bl
 </p>
 
 </div>
-<hr class="col-sm-12">
-
+<hr>
 <div id="extras">
+    <br><br>
   <h2> More advanced material </h2>
 
   Here are some things to try if you breezed through the activity.
@@ -337,9 +340,9 @@ As our first task, we need to complete the missing pieces of the <font color='bl
   </li>
 </ol>
 </div>
-<hr class="col-sm-12">
-
+<hr>
 <div id="conclusion">
+    <br><br>
 <h2> Some concluding remarks </h2>
 
 <p>
@@ -370,7 +373,7 @@ $('#nav').affix({
 
 $('#sidebar').affix({
       offset: {
-        top: 200
+        top: $('header').height()
       }
 });
 </script>

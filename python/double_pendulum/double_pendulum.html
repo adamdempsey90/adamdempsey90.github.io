@@ -95,7 +95,7 @@
 
 
 
-<body position= relative;>
+<body position= relative; data-spy="scroll" data-target="#myScrollspy">
 <!-- <body style="font-family:sans-serif;
              font-size:15px;
              width:800px;
@@ -107,27 +107,31 @@
   <!-- Begin Body -->
   <div class="container">
    <div class="row">
-         <div class="col-sm-3">
+         <div class="col-sm-3" id="myScrollspy">
              <ul id="sidebar" class="nav nav-pills nav-stacked" >
-                 <li><a href="#title">Simulating the Double Pendulum.</a></li>
-                 <li><a href="#introduction">Introduction.</a></li>
-                 <li><a href="#pythonclasses">Classes In Python. </a></li>
+                 <li><a href="#title">Simulating the Double Pendulum</a></li>
+                 <li><a href="#introduction">Introduction</a></li>
+                 <li><a href="#pythonclasses">Classes In Python </a></li>
+                 <li><a href="#pythonplotting">Plotting In Python </a></li>
                  <li class="divider"></li>
-                 <li><a href="#simulation">The Simulation.</a></li>
-                 <li><a href="#simplependulum">Reproducing the simple pendulum.</a></li>
-                 <li><a href="#doublependulum">The double pendulum.</a></li>
-                 <li><a href="#invertedpendulum">The inverted pendulum. </a></li>
+                 <li><a href="#simulation">The Simulation</a></li>
+                 <li><a href="#simplependulum">Reproducing the simple pendulum</a></li>
+                 <li><a href="#doublependulum">The double pendulum</a></li>
+                 <li><a href="#invertedpendulum">The inverted pendulum </a></li>
                  <li><a href="#experiments">Let the experiments begin!</a></li>
                </ul>
          </div>
 
 <div class="col-sm-9">
 <div id="title">
+    <br><br>
  <h1>Simulating the Double Pendulum</h1>
  <h1>An Introduction to Numerical Modeling II</h1>
 
- <div class="col-sm-12">
+ </div>
+ <hr>
  <div id="introduction">
+    <br><br>
 <h2>Introduction</h2>
 
 <p>In the previous <a href="../bouncing_ball/bouncing_ball.html">activity</a>, we modeled a bouncing ball with Python. There, we focused our efforts mainly on writing an energy conserving update scheme that evolved the ball forward in time. In this activity, we will sharpen other Python skills that will be useful in numerical modeling. To do this, we will be modeling the <a href="https://en.wikipedia.org/wiki/Double_pendulum">double pendulum</a>.</p>
@@ -143,8 +147,10 @@ Before we dive into the code, remember to use all available resources if you get
 
 <p>Download the <a href="double_pendulum.py">code</a> and open it in your Python environment. Give it a quick read through and identify where the "Fix me!" lines are. The structure of this program is the same as the bouncing ball program. You'll notice that we aren't using our <font color='blue' > update_leapfrog </font> function from that activity. Instead we'll be using one of SciPy's integration packages, <a href="http://docs.scipy.org/doc/scipy-0.16.0/reference/generated/scipy.integrate.odeint.html">odeint</a>.</p>
 
-<div class="col-sm-12">
+</div>
+<hr>
 <div id="pythonclasses">
+    <br><br>
 <h2>Classes in Python</h2>
 
 <p>Classes are Python's implementation of <a href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object-Orientated Programming</a>. They allow programmers to "bundle up" related variables and functions into one overarching object. The class we'll be working with contains all of the information of each bob at the end of a pendulum. We'll call it the <font color='green'>Bob</font> class. The Bob class holds the position, velocity, mass and rod length of each pendulum.</p>
@@ -159,6 +165,10 @@ Before we dive into the code, remember to use all available resources if you get
 
 <p>Now that our Bob class is complete we can move on to plotting.</p>
 
+</div>
+<hr>
+<div id="pythonplotting">
+    <br><br>
 <h2>Plotting in Python</h2>
 
 <p>One of the main advantages of using Python for scientific computing is its plotting library, <a href="http://matplotlib.org">matplotlib</a>. This allows you to quickly and easily view your data in many different ways. For our double pendulum simulator, we'll be using the <font color='blue'>plot</font> function. This function is the general plotting function for Python. It takes a list of x-values and a list of y-values as inputs and produces a graph of the data.</p>
@@ -173,16 +183,20 @@ Before we dive into the code, remember to use all available resources if you get
 
 <p>Additionally, we want the line that connects the points to be thick. We can tell the plot function to do this by passing it the keyword argument, linewidth. <font color='red'><b> Set the linewidth equal to 3 in the final blank space of the plot function</b></font>. As an example, look at how we set the markersize variable to 10.</p>
 
-<div class="col-sm-12">
+</div>
+<hr>
 <div id="simulation">
+    <br><br>
 <h2>The Simulation</h2>
 
 <p>Now that we've completed our program, we can run our model of the double pendulum. The idea is the same as for the bouncing ball model: we numerically integrate the equations of motion and display the results.</p>
 
 <p>To load in all of the functions hit the Run button in Canopy. If you had errors in the lines you fixed, you'll have to go back and fix them before you can run the model. If your script loaded without errors, then call the <font color='blue'>evolve</font> function to start the simulation. The evolve function takes the initial lengths, masses, and angles of the two bobs.</p>
 
-<div class="col-sm-12">
+</div>
+<hr>
 <div id="simplependulum">
+    <br><br>
 <h3>Reproducing the simple pendulum</h3>
 
 <p>To check that our model makes sense in the case of a simple pendulum, <font color='red'><b>call the evolve function with the second mass set to zero, <font color='blue'>evolve</font>( 1 , 1 , 1 , 0 , 0.6, 0, 25, 0.1)</b></font>. Your output should look similar to this,</p>
@@ -200,14 +214,19 @@ Before we dive into the code, remember to use all available resources if you get
 <br>
 <li>Finally, the bottom right plot shows the total energy of the system (magenta line) and the energies of each bob. Remember that the total energy of the system should remain the same at all times.</li>
 </ul>
-<div class="col-sm-12">
+
+</div>
+<hr>
 <div id="doublependulum">
+    <br><br>
 <h3>The double pendulum</h3>
 
 <p>Let's test out another configuration, but this time we'll make the bobs of equal mass. <font color='red'><b>Call the evolve function with the same arguments as before, but change the mass of the second bob to 1, <font color='blue'> evolve</font>( 1 , 1 , 1 , 1 , 0.6, 0, 25, 0.1). What has changed? What effect did increasing the mass of the second bob have? Make a prediction for what will happen when you continue to increase the mass of the second bob. Test your prediction by calling the evolve function with the mass of the second bob equal to 10, and then equal to 100. Was your prediction correct?</b></font></p>
 
-<div class="col-sm-12">
+</div>
+<hr>
 <div id="invertedpendulum">
+    <br><br>
 <h3>The inverted pendulum</h3>
 
 <p>Let's look at the case of the inverted pendulum, i.e a pendulum where the bobs are at the top rather than at the bottom. The inverted pendulum is an example of an unstable equilibrium where the slightest nudge will send it swinging down. <font color='red'><b>Call the evolve function again but this time set the initial angles of the two bobs so that they are at the top</b></font>. Your output should look similar to this,</p>
@@ -218,17 +237,22 @@ Before we dive into the code, remember to use all available resources if you get
 
 <p><font color='red'><b>How does this motion compare with the cases from before? How would you describe the motion of the red bob?</b></font></p>
 
-<div class="col-sm-12">
+</div>
+<hr>
 <div id="experiments">
+    <br><br>
 <h3>Let the experiments begin!</h3>
 
 <p>Now that you've got a feel for how to use the model. Try out different configurations and see how regular or periodic the motion is. Try varying the lengths of the pendula or their starting angles.</p>
 
 <p>If you want to do more coding, try changing the color of the lines and the size of the bobs in the plots. A more challenging exercise would be to convert the program into a collection of classes, i.e take all of the simulation functions and put them into a <font color='green'>Simulation</font> class.  </p>
 
+</div>
 <br><br><br>
 
-
+</div>
+</div>
+</div>
 
 <footer> Written by Adam Dempsey. <br> CIERA, Northwestern University.</footer>
 
@@ -243,7 +267,7 @@ $('#nav').affix({
 
 $('#sidebar').affix({
       offset: {
-        top: 200
+        top: $('header').height()
       }
 });
 </script>

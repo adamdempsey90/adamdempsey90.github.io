@@ -94,7 +94,7 @@
 
 
 
-<body position= relative;>
+<body position= relative; data-spy="scroll" data-target="#myScrollspy">
 <!-- <body style="font-family:sans-serif;
              font-size:15px;
              width:800px;
@@ -106,30 +106,34 @@
   <!-- Begin Body -->
   <div class="container">
    <div class="row">
-         <div class="col-sm-3">
-             <ul id="sidebar" class="nav nav-pills nav-stacked" >
-                 <li><a href="#title">(Re)Discovering Dark Energy.</a></li>
-                 <li><a href="#introduction">Introduction.</a></li>
-                 <li><a href="#thedata">The Data. </a></li>
+         <div class="col-sm-3" id="myScrollspy">
+             <ul id="sidebar" class="nav nav-pills nav-stacked" data-spy="affix">
+                 <li><a href="#title">(Re)Discovering Dark Energy</a></li>
+                 <li><a href="#introduction">Introduction</a></li>
+                 <li><a href="#thedata">The Data </a></li>
                  <li class="divider"></li>
-                 <li><a href="#python">Python.</a></li>
-                 <li><a href="#hubbleslaw">Hubble's Law.</a></li>
-                 <li><a href="#approximation">An approximation.</a></li>
-                 <li><a href="#acceleratinguniverse">The Accelerating Universe. </a></li>
-                 <li><a href="#extras">Extras.</a></li>
+                 <li><a href="#python">Python</a></li>
+                 <li><a href="#hubbleslaw">Hubble's Law</a></li>
+                 <li><a href="#approximation">An approximation</a></li>
+                 <li><a href="#acceleratinguniverse">The Accelerating Universe </a></li>
+                 <li><a href="#extras">Extras</a></li>
                </ul>
          </div>
 
 <div class="col-sm-9">
 <div id="title">
+    <br><br>
 <h1>(Re)Discovering Dark Energy and the Expanding Universe: Fitting Data with Python</h1>
 
 <div class='image'>
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/DMPie_2013.svg" style="width:600px;height=400px;" alt="alt text" title="" />
 </div>
 <br><br><br>
-<hr class="col-sm-12">
+</div>
+
+<hr>
 <div id="introduction">
+    <br><br>
 <h2>Introduction</h2>
 
 <p>Through observations of the local and distance Universe, astronomers have determined that our Universe is made up of three types of matter and energy:</p>
@@ -151,9 +155,10 @@
 
 <p>As we will see in this activity, our Universe is expanding. In fact, it is not only expanding but doing so at an accelerated rate. The unknown mechanism that causes this <em>observed</em> accelerated expansion rate we call <strong>Dark Energy</strong>.</p>
 
-
-<hr class="col-sm-12">
+</div>
+<hr>
 <div id="thedata">
+    <br><br>
 <h2>The Data</h2>
 
 <p>For this activity we will be using real <a href="http://braeburn.pha.jhu.edu/~ariess/R06/">data</a> from a group lead by the Nobel Prize winner Adam Riess. His team measured the distances and redshifts to hundreds of galaxies by observing these Type Ia Supernovae.  We will be using that same data to discover Dark Energy.</p>
@@ -163,8 +168,11 @@
 <p>We will be using Python to do our data analysis. With the numerical (Numpy) and scientific (Scipy) libraries, plotting and fitting the supernovae data will be a breeze.</p>
 
 <p>As always, remember to use all available resources if you get stuck with any Python syntax. Some good resources are <a href="https://www.google.com/">Google</a>, the <a href="https://docs.python.org/2/">Python documentation</a> and the <a href="https://www.codecademy.com/articles/glossary-python">Codecademy glossary</a>.</p>
-<hr class="col-sm-12">
+
+</div>
+<hr>
 <div id="python">
+    <br><br>
 <h2>Python</h2>
 
 <p>The Python code for this activity is split into two files. The linear fit script is <a href="linear_fit.py">here</a> , and the quadratic fit script is <a href="quadratic_fit.py">here</a>. Download both of these and open them up in the Canopy editor.</p>
@@ -173,8 +181,10 @@
 
 <p>Part one will focus on fitting a linear relationship between supernova distance and redshift. Part two will fit a quadratic relationship between supernova distance and redshift.</p>
 
-<hr class="col-sm-12">
+</div>
+<hr>
 <div id="hubbleslaw">
+    <br><br>
 <h2>Hubble's Law</h2>
 
 <p>Open up the <a href="linear_fit.py">linear_fit.py</a> script and read over the comments and code. The script loads the data by opening the sn</em>data.txt file and then fits the data to a linear function given by,</p>
@@ -197,8 +207,10 @@
 
 <p>The green band around the best fit line shows the spread in our fit based on the spread in the fitted value of the Hubble Constant. </p>
 
-<hr class="col-sm-12">
+</div>
+<hr>
 <div id="approximation">
+    <br><br>
 <h2>An approximation</h2>
 
 <p>Hubble’s Law is really only valid at very small redshifts. Try fitting the data again with the same fitting function but this time only fit a small subset of the data. Uncomment the bottom lines of the linear_fit.py script and fix the remaining missing pieces of code and rerun the script by hitting the green play button at the top. This time you should see a second plot pop up that shows only the data with redshift less than 0.1. How does this value of the Hubble constant compare with the best estimates to date (use Google to find this)?</p>
@@ -208,10 +220,11 @@
 </div>
 <br><br><br>
 
-<hr class="col-sm-12">
+</div>
+<hr>
 <div id="acceleratinguniverse">
+    <br><br>
 <h2>The Accelerating Universe</h2>
-
 <p>In the previous section we found that a linear relation between redshift and distance was not good enough to fit the full domain of observed supernovae data.  We can go one step further and add a quadratic term to the fitting function.  This introduces a new parameter that is historically called the deceleration parameter q. If q is non-zero and negative this suggests that the further away a galaxy is from us, the faster it is receding from us.  Our fitting function is now,</p>
 
 <p>distance = 300,000 * ( redshift + 0.5 * (1 - q) * redshift^2 ) / H</p>
@@ -229,8 +242,10 @@ Note that we now have two parameters, H and q.
 
 <p>Notice that we still haven’t got a good fit to the data at redshift greater than one.  In reality the fitting function is much more complicated and can’t be written as a simple polynomial.  But for small redshifts it can be approximated by one, as we’ve just seen.  </p>
 
-<hr class="col-sm-12">
+</div>
+<hr>  <!--class="col-sm-12">-->
 <div id="extras">
+    <br><br>
 <h2> Extras </h2>
 
 Some extra things to do if you've discovered Dark Energy are:
@@ -242,9 +257,11 @@ Some extra things to do if you've discovered Dark Energy are:
 
 </ul>
 
+</div>
 <br><br><br>
-
-
+</div>
+</div>
+</div>
 
 <footer> Written by Adam Dempsey. <br> CIERA, Northwestern University.</footer>
 
@@ -259,7 +276,7 @@ $('#nav').affix({
 
 $('#sidebar').affix({
       offset: {
-        top: 200
+        top: $('header').height()
       }
 });
 </script>
