@@ -1,6 +1,8 @@
 import numpy as np
 import scipy.optimize as opt
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+
 class DataPoints():
     def __init__(self,val,label,err=None):
         self.val = val
@@ -60,7 +62,7 @@ class Data(DataPoints):
           0 1 0   0 
         """
         dat = np.loadtxt(filename)
-        with open(filename,'r'):
+        with open(filename,'r') as f:
             for line in f.readlines():
                 if '#' in line:
                     header = line.split('#')[-1].split()
@@ -80,4 +82,53 @@ class Data(DataPoints):
         self.xdata = DataPoints(dat[:,0],header[0],err= None if no_xerr else dat[:,2])
         self.ydata = DataPoints(dat[:,1],header[1],err = None if no_yerr else dat[:,2] if no_xerr else dat[:,3])
         
+    def fit_data(self,initial_guess=None,fitting_function=None,**kwargs):
+        if self.fitting_function == None:
+            if fitting_function == None:
+                print 'Fitting function not set!'
+                return
+            else:
+                self.fitting_function = fitting_function
+        abssigma = kwargs.pop('absolute_sigma',True)
+        try:
+            if self.ydata.err == None:
+                popt,pcov = opt.curve_fit(self.fitting_function,
+                                    self.xdata.val,self.ydata.val)
+            else:
+                popt,pcov = opt.curve_fit(self.fitting_function,
+                                    self.xdata.val,self.ydata.val,
+                                    sigma=self.ydata.err,absolute_sigma=abssigma,
+                                    p0 = initial_guess)
+        except RuntimeError:
+           print 'Fit not converging. Try different inital_guess.'
+           return
+
+        
+        resids = self.ydata.val - self.fitting_function(self.xdata.val,*popt)
+        self.plot_fit(popt,pcov,resids)
+        return popt,pcov,resids
+    def plot_fit(self,popt,pcov,resids):
+        fig = plt.figure(figsize=(20,10))
+        gs = gridspec.GridSpec(3,3)
+        ax = fig.add_subplot(gs[:2,:])
+        axr = fig.add_subplot(gs[-1,:])
+        plt.subplots_adjust(hspace=0)
+        
+        x_fit = np.linspace(self.xdata.val[0],self.xdata.val[-1],1000)
+        y_fit = self.fitting_function(x_fit,*popt)
+        self.plot(ax=ax)
+        ax.plot(x_fit,y_fit,'-g',linewidth=3)
+        axr.errorbar(self.xdata.val,resids,yerr=self.ydata.err,fmt='o')
+        axr.axhline(0,color='k')
+        axr.set_xlabel(self.xdata.label)
+        axr.set_ylabel('Rediduals')
+        ax.set_ylabel(self.ydata.label)
+        
+        ax.set_xticklabels([]) #Remove x-tic labels for the first frame
+        ax.get_yticklabels()[0].set_visible(False)
+        axr.get_yticklabels()[-1].set_visible(False)
+        ax.grid()
+        axr.grid()
+        axr.minorticks_on()
+        ax.minorticks_on()
         
