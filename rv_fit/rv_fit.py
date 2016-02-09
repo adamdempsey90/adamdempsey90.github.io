@@ -166,8 +166,8 @@ class Star():
 
     def fit_data(self):
         n,pers,periodogram_res = self.get_best_n(self.t,self.vr)
-        popt,pcov = curve_fit(self.fitting_func(n),self.t,self.vr, \
-                                sigma=self.vr_err,absolute_sigma=True, \
+        popt,pcov = curve_fit(self.fitting_func(n),self.t,self.vr, 
+                                sigma=self.vr_err,absolute_sigma=True, 
                                 p0=(self.t[len(self.t)/2],self.vr.max(),0,.1))
         popterr = np.sqrt(np.diag(pcov))
         popt_str_vals = []
