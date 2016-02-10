@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <style>
+      .navbar-form input, .form-inline input {
+        width:auto;
+      }
+      header {
+        height:280px;
+      }
+      #nav.navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: 0%;
+        z-index:10;
+        /*background-color: #CED6D6;*/
+      }
+      #nav.affix {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          left: 0%;
+          z-index:10;
+          /*background-color: #CED6D6;*/
+      }
+      #sidebar.nav {
+        position: fixed;
+        top: 80px;
+        left: 0%;
+      }
+      #sidebar.affix-top {
+          position: static;
+      }
+
+      #sidebar.affix {
+          position: fixed;
+          top: 80px;
+          left: 0%;
+      }
+    </style>
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" type="text/css" href="dark_energy.css">
+
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script> -->
+    <title>Finding Planets with Star Wobbles</title>
+</head>
+
+<!-- Begin Navbar -->
+<div id="nav">
+  <div class="navbar navbar-default navbar-static">
+    <div class="container">
+  <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!-- <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span> -->
+      </a>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index.html">Home</a></li>
+          <li class="divider"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Python Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="../bouncing_ball/bouncing_ball.html">Bouncing Ball</a></li>
+              <li> <a href="../double_pendulum/double_pendulum.html">Double Pendulum</a> </li>
+              <li> <a href="../dark_energy/dark_energy.html">Dark Energy</a> </li>
+              <li> <a href="#">Radial Velocities</a> </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HTML5 Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li> <a href="#">Keplerian Orbits</a> </li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div><!-- /.navbar -->
+</div>
+
+
+
+<body position= relative; data-spy="scroll" data-target="#myScrollspy">
+
+
+  <div class="container">
+   <div class="row">
+         <div class="col-sm-3" id="myScrollspy">
+             <ul id="sidebar" class="nav nav-pills nav-stacked" data-spy="affix">
+                 <li><a href="#title">Finding Planets with Star Wobbles</a></li>
+                 <li><a href="#introduction">Introduction</a></li>
+                 <li><a href="#thepython">The Python</a></li>
+                 <li class="divider"></li>
+                 <li><a href="#results">Results</a></li>
+
+                 <li><a href="#extras">Extras</a></li>
+               </ul>
+         </div>
+
+<div class="col-sm-9">
+<div id="title">
+  <br><br><br><br>
+<h1>Finding Planets with Star Wobbles</h1>
+</div>
+
+<hr>
+<div id="introduction">
+  <br><br>
+<h2>Introduction</h2>
+
+<p>The last 5-10 years has seen the number of known planets grow to almost two thousand
+  (with almost four thousand waiting to be confirmed). This burst in discovery is due mostly
+  to the <em>Kepler</em> telescope. <em>Kepler</em> stared at roughly 200,000 stars for five
+  years looking for a dip in the light they emit. Planets <strong>transiting</strong> between us
+  and their host star is one of the easiest and fruitful planet detection methods. However, the
+  <em>first</em> exoplanet was discovered in 1995 by a completely different method; one that looks
+  for the slight wobble of a star due to an orbiting planet. The <strong>radial velocity</strong> method
+  has since been a consistent method for finding new planets, and confirming candidate planets detected
+  by other methods.</p>
+
+<p>In keeping with our theme of using Python to explore and analyze data, we will be working
+  with <strong>real</strong> radial velocity data to find exoplanets with just a few built in Python functions.</p>
+
+<h2>The Radial Velocity method</h2>
+
+<p>The radial velocity method works on the principle that a star + planet system
+  will orbit about its common center of mass. The figure below depicts this.</p>
+
+<div class='image'>
+<img src="edge_on.gif" style="width:300px;height=400px;" alt="alt text" title="" />
+<img src="face_on.gif" style="width:300px;height=400px;" alt="alt text" title="" />
+</div>
+<a href=https://en.wikipedia.org/wiki/Doppler_spectroscopy>Credit</a>
+
+<br><br><br>
+
+<p>The speed at which the star moves and its displacement from the center are set by
+  the planet's mass and how close it approaches the star. What radial velocity measures
+  is the velocity of the star in the direction towards us or away from us. To make this
+  measurement, astronomers take a spectrum of the star. If the star is moving towards us,
+   the spectral lines will be <em>blueshifted</em>, whereas if the star is moving away form us,
+    the lines will be <em>redshifted</em>. This shift is directly related to the speed of the star
+     along the line of sight. From the depiction above, it's clear that if the system is orientated
+     face-on (as in the right), there will be no observed motion along the line of sight.
+     On the other hand, if we're viewing the system edge-on, then the radial velocity signal will
+     be the largest. This tilt of the star-planet system on the sky is called <strong>inclination</strong>,
+     and it is very difficult to measure. If we don't know the inclination of the system, then we can
+     only get a <em>lower</em> bound on the planet's mass.</p>
+
+<p>Radial velocity data might look something like this,</p>
+
+<div class='image'>
+<img src="rv_example.svg" style="width:600px;height=400px;" alt="alt text" title="" />
+</div>
+<br><br><br>
+
+<p>Here we're plotting the observed radial velocity in meters per second on the vertical
+  axis versus time in days. We can see that the observations for this star occurred over several years. We can see by eye
+  that the data follow roughly a sinusoidal pattern (especially for the last half). The goal, then,
+  is going to be to fit this data to a general sine (or cosine) curve,
+
+
+$$V_r(t) = \text{amplitude} * \cos\left( \text{frequency}*t + \text{phase} \right) + \text{offset}$$
+
+
+Once we have the best fit period, amplitude, phase, and offset of the data, we can relate them to the physical properties of the planet and its orbit.</p>
+
+<p>From the analytic solution of the gravitational two-body problem we can write the velocity of the star along the line of sight as,</p>
+
+$$ V_r(t) = K \left( \cos( f(t) + \omega ) + e \cos\omega \right)$$
+
+<p>The time parameter here is hidden in the \(f(t)\) angle (also called the <a href="https://en.wikipedia.org/wiki/True_anomaly">true anomaly</a>).
+  If we connect this equation back to the equation for the general cosine wave, we see that the \(K\) parameter is related to the amplitude,
+   \(f(t)\) is related to time and the period, \(\omega\) is related to the phase, and \(e\) (the eccentricity of the orbit) is related to the offset.
+   The semi-amplitude, \(K\), can be approximated as,</p>
+
+$$K = 28.4 \, \text{m} \text{s}^{-1}  \, \frac{M_p \sin i}{M_J}  \left( \frac{P}{1 \text{yr}} \right)^{-1/3}  \left( \frac{M_\star}{M_\odot} \right)^{-2/3} \frac{1}{\sqrt{1-e^2}}$$
+
+<p>This says that maximum speed of the Sun if Jupiter where placed in the Earth's orbit would be about 28 m/s.
+  Astronomers can detect these speeds down to ~ 1 m/s (that's walking speed!).
+  We see that the strength of the radial velocity signal depends on the planet mass, the eccentricity,
+   the orbital period, and the mass of the star. The true anomaly, \(f(t)\) is related to time via the following two equaions,</p>
+
+$$E - e \sin E = n (t-\tau)$$
+
+$$\tan(f/2) = \sqrt{ \frac{1+e}{1-e} }  \tan(E/2)$$
+
+<p>Here, \(E\) is the <a href="https://en.wikipedia.org/wiki/Eccentric_anomaly">eccentric anomaly</a>, \(n (t-\tau)\) is
+  the <a href="https://en.wikipedia.org/wiki/Mean_anomaly">mean anomaly</a>, and \( n= 2 \pi / P \) is the mean motion of the planet.
+   Given a time, \(t\), we first have to solve the first equation for the eccentric anomaly, \(E\). This has to be done numerically.
+    In Python we can use the <a href="http://docs.scipy.org/doc/scipy-0.16.0/reference/generated/scipy.optimize.fsolve.html">fsolve</a> function to do this easily.
+    Once we have the eccentric anomaly, we can plug it into the second equation to calculate the true anomaly, \(f\).
+    The relationship between \(f\) and \(t\) is shown below for different eccentricities. The straight segments are for a circular orbit,
+     while the most distorted curves are for an eccentricity of 0.9.  </p>
+
+<div class='image'>
+<img src="keplers_eqn.svg" style="width:600px;height=400px;" alt="alt text" title="" />
+</div>
+<br><br><br>
+
+<p>A nice technical summary (but not too technical) on the radial velocity method can be found <a href="http://www.gehirn-und-geist.de/sixcms/media.php/370/Leseprobe.406372.pdf">here</a>.
+  Now that we've laid out our fitting procedure and connected our fitting parameters to our physical parameters, we can get into the coding.</p>
+
+</div>
+<hr>
+<div id="thepython">
+  <br><br>
+<h2>The Python</h2>
+
+<p>Given the radial velocity data, Python makes it simple to define a fitting function and
+  then fit the data to that function. We've explored this in one of the
+  <a href="../dark_energy/dark_energy.html">previous activities</a>. There we were
+  fitting linear and quadratic functions with one or two parameters. Here, however, we will be
+  fitting <em>five</em> parameters, \(K, \, e, \, \omega, \, \tau, \, n \), to our radial velocity data.
+  We will again be making use of Python's <a href="http://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.optimize.curve_fit.html">curve_fit</a>
+  function to find the best parameters that describe our data.</p>
+
+<p>Download the two python files <a href="rv.py">rv.py</a> and <a href="rv_fit.py">rv_fit.py</a>.
+  <strong>Make sure to download them into the same folder</strong>. The first file contains helper
+  functions that solve the orbital equations described above and functions to visualize the data
+  and fit to the data. The second file contains the fitting function and the function to
+  load the data. The second file is missing some code, denoted by FIX MEs.  </p>
+
+<p>Download the two data files for the stars <a href="hd10442.dat">HD 10442</a> and <a href="hd5319.dat">HD 5319</a> (courtesty of <a href="http://arxiv.org/abs/1411.5374">the authors</a>).
+  <strong>Make sure to save these to the same folder as the Python files</strong>.
+  Once the data files are downloaded, fill in the missing code in rv_fit.py and find the exoplanets!</p>
+
+</div>
+<hr>
+<div id="results">
+    <br><br>
+<h2>Results</h2>
+
+<p>If you coded everything up correctly, you should see plots that look something like these,</p>
+
+<div class='image'>
+<img src="hd10442_ans.svg" style="width:600px;height=400px;" alt="alt text" title="" />
+<img src="hd5319_ans.svg" style="width:600px;height=400px;" alt="alt text" title="" />
+</div>
+<br><br><br>
+
+<p> Are these good fits to the data? The bottom plot shows the <emph>residuals</emph> of our fit. The closer the residuals are to zero, the better.
+  Take a close look at the residuals for HD 5319. Do you notice anything interesting? It's not too hard to believe that residuals appear to follow another sine curve.
+  We can go through the same procedure as befor and fit the <emph>rediduals</emph> for a planet. In fact, HD 5319 does have <emph>two</emph> planet with similar periods.</p>
+
+
+<p>Now that you have measured masses, eccentricities, and periods for these planets,
+  you can compare your results to the <a href="http://www.openexoplanetcatalogue.com">accepted values</a>.
+  Note that we can get pretty close given our simple fitting procedure. In reality, astronomers
+   use more sophisticated and custom methods in order to explore all of the uncertainties in
+   the measurements and the models. Nevertheless, this method can prove to be a useful first attempt at discovering planets! </p>
+
+</div>
+<hr>
+<div id="extras">
+    <br><br>
+<h2>Extras</h2>
+
+<ul>
+  <li>If you have time, dig a little deeper into the helper functions in rv.py. The plotting function demonstrates how to "glue" two plots together. </li>
+  <li> Try modifying the fit_data routine to accept x,y,y_err arguments so that you can fit whatever data you want. Apply this to HD 5319 to fit the residuals for a second planet.
+  <li>Grab some more radial velocity data. One waty to do this you can start on the exoplanet catalogue site,
+    find a planet, and then look up the reference paper. The authors usually provide their data in the text of the article. Here are a few more to try
+    <ul>
+      <li> <a href="HD 31253.dat">HD 31253</a> </li>
+      <li> <a href="HD 74156.dat">HD 74156</a> </li>
+      <li> <a href="HD 99492.dat">HD 99492</a> </li>
+      <li> <a href="HD 177830.dat">HD 177830</a> </li>
+      <li> <a href="HD 218566.dat">HD 218566</a> </li>
+    </ul>
+    (these can be found <a href="http://vizier.cfa.harvard.edu/viz-bin/VizieR?-source=J/ApJ/727/117">here</a>), </li>
+    <li> You can read up on how astronomers use the radial velocity method to find multiple planets <a href=http://arxiv.org/abs/0904.3725>here</a>.
+
+</ul>
+
+
+</div>
+<br><br><br>
+</div>
+</div>
+</div>
+
+<footer> &copy; 2016, Adam Dempsey. <br> CIERA, Northwestern University.</footer>
+
+</body>
+</html>
+<script>
+$$('#nav').affix({
+      offset: {
+        top: $$('header').height()
+      }
+});
+
+$$('#sidebar').affix({
+      offset: {
+        top: $$('header').height()
+      }
+});
+</script>
