@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <style>
+      .navbar-form input, .form-inline input {
+        width:auto;
+      }
+      header {
+        height:280px;
+      }
+      #nav.navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: 0%;
+        z-index:10;
+        /*background-color: #CED6D6;*/
+      }
+      #nav.affix {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          left: 0%;
+          z-index:10;
+          /*background-color: #CED6D6;*/
+      }
+      #sidebar.nav {
+        position: fixed;
+        top: 80px;
+        left: 0%;
+      }
+      #sidebar.affix-top {
+          position: static;
+      }
+
+      #sidebar.affix {
+          position: fixed;
+          top: 80px;
+          left: 0%;
+      }
+    </style>
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" type="text/css" href="dark_energy.css">
+
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script> -->
+    <title>The DataClass Module</title>
+</head>
+
+<!-- Begin Navbar -->
+<div id="nav">
+  <div class="navbar navbar-default navbar-static">
+    <div class="container">
+  <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!-- <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span> -->
+      </a>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index.html">Home</a></li>
+          <li class="divider"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Python Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="../bouncing_ball/bouncing_ball.html">Bouncing Ball</a></li>
+              <li> <a href="../double_pendulum/double_pendulum.html">Double Pendulum</a> </li>
+              <li> <a href="../dark_energy/dark_energy.html">Dark Energy</a> </li>
+              <li> <a href="../radial_velocities/radial_velocities.html">Radial Velocities</a> </li>
+              <li> <a href="#">DataClass Module</a> </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HTML5 Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li> <a href="#">Keplerian Orbits</a> </li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div><!-- /.navbar -->
+</div>
+
+
+
+<body position= relative; data-spy="scroll" data-target="#myScrollspy">
+
+
+  <div class="container">
+   <div class="row">
+         <div class="col-sm-3" id="myScrollspy">
+             <ul id="sidebar" class="nav nav-pills nav-stacked" data-spy="affix">
+                 <li><a href="#title">The DataClass module</a></li>
+                 <li><a href="#introduction">Introduction</a></li>
+                 <li><a href="#data">Download the data file(s)</a></li>
+                 <li class="divider"></li>
+                 <li><a href="#dataclass">Exploring DataClass</a></li>
+                 <li><a href="#extras">Playing with options</a></li>
+                  <li class="divider"></li>
+                <br> <br><br> <br><br> <br>
+              Files to download for this activity
+            <li> <a href="DataClass.py">DataClass.py</a> </li>
+            <li> <a href="data1.dat">data1.dat</a> </li>
+            <li><a href="data2.dat">data2.dat</a> </li>
+            <li> <a href="data3.dat">data3.dat</a> </li>
+            <li> <a href="data4.dat">data4.dat</a> </li>
+
+            </ul>
+         </div>
+
+<div class="col-sm-9">
+<div id="title">
+  <br><br><br><br>
+<h1>The DataClass module</h1>
+</div>
+<div class='image'>
+<img src="example_plot1.png" style="width:700px;height=600px;" alt="alt text" title="" />
+</div>
+<div id="introduction">
+  <br><br><br><br>
+<h1>Introduction</h1>
+</div>
+
+<p>In previous activities we've learned how to use Python to simulate physical systems and to fit datasets to physical models. Rather than hosting another activity, this page will host and describe a generic two-dimensional data fitting <a href="DataClass.py">module</a> that can be used to produce quality fits and plots to a wide range of datasets and models.</p>
+
+<div id="data">
+  <br><br><br><br>
+<h1>Download the data file(s)</h1>
+</div>
+<p>There are several example data files. You should download at least one of them. Once your script is working, it should be simple to switch out one data file for another. Along with each data file, there is a corresponding fitting_function that needs to be coded up in your Python script.</p>
+
+<ol>
+<li><p><a href="data1.dat">Data 1</a> &nbsp; -- &nbsp; \( y = \exp(-x/a) \left[ 1 - (x/b)^2 + (x/c)^3 \right] \)</p></li>
+<li><p><a href="data2.dat">Data 2</a> &nbsp; -- &nbsp; \( y = x^2  \sin(b x + c) + d \)</p></li>
+<li><p><a href="data3.dat">Data 3</a> &nbsp; -- &nbsp; \( y = a \sin(b x + c) + d \)</p></li>
+<li><p><a href="data4.dat">Data 4</a> &nbsp; -- &nbsp; \( y = a \sin(b x) + c \cos(d x) \)</p></li>
+</ol>
+
+<p>Make sure to download at least one of these files and save it to the same folder you saved the DataClass.py file.</p>
+
+<div id="dataclass">
+  <br><br><br><br>
+<h1>Exploring DataClass</h1>
+</div>
+<p>After you've downloaded the <a href="DataClass.py">DataClass</a> file, <strong>open up a new, blank, Python file</strong>. This will be your script with which you load in and fit the data. Before you start coding, <strong>change the "Working Directory" in Canopy to the folder where you saved the DataClass.py file</strong>. Once you've changed your working directory, complete the following steps to finish your program:</p>
+
+<ol>
+<li>Import the DataClass module and the Numpy library  using an import statement. For example,
+<p><code>
+import DataClass <br>
+import numpy as np
+</code></p></li>
+
+<li>Import any other libraries you might need.</li>
+<li>Next define a function that will be your fitting function. You can name it whatever you like. An example of a fitting function is,
+
+<p><code>
+def func(x,a,b,c):`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return a*x*x + b*x + c
+</code></p>
+
+This is a general quadratic equation with three parameters. Your fitting function will depend on which data file you downloaded. </li>
+
+<p>In the lines below your fitting function definition will be the commands to instantiate a Data object that holds your data.</p>
+<li> Set a variable data equal to an instance of the Data class. You must pass the file name of the data file as an argument to Data(). For example,
+<p><code>
+data = DataClass.Data(filename,func)
+</code></p></li>
+
+<li><p>On the next line call the statistics method of data. This will print out some simple statistics such as mean and range of the data.</p></li>
+<li><p>Finally, call the fit_data method of data. This will fit the data to your fitting function and plot the results. Check the definition of fit_data in the DataClass.py file to check for any arguments it might take.</p></li>
+</ol>
+
+<p>Now you can execute the script. If all goes well you should see a plot pop up displaying the data and the fit to the data. An example of what you should see is,</p>
+
+<div class='image'>
+<img src="example_plot.png" style="width:600px;height=400px;" alt="alt text" title="" />
+</div>
+
+<div id="extras">
+  <br><br><br><br>
+<h1>Playing with options</h1>
+</div>
+<p>Now that you have a working data fitter, try passing different <em>keyword</em> arguments to data.fit_data() to change properties of the plot. Some examples of what you can change are:</p>
+
+<ol>
+<li>fontsize. This controls the size of the font used in the labels.</li>
+<li>fmt. This controls the shape and color of the points used in plotting the data. It defaults to blue circles.</li>
+<li>markersize. This controls size of the data points.</li>
+<li>color. This sets the color of the best fit line.</li>
+<li>linestyle. This sets the <em>style</em> of the best fit line. It can be solid, '-'; dashed, '--'; or dashed-dot,'-.'.</li>
+<li>linewidth. This controls how thick the best fit line is.</li>
+<li>grid_off. If set to True, this turns of the grid in the plots.</li>
+<li>There are many other style choices that can be found in the documentation for the <a href="http://matplotlib.org/api/pyplot_api.html">plot function</a>.</li>
+</ol>
+
+
+
+
+
+</div>
+<br><br><br>
+</div>
+</div>
+</div>
+
+<footer> &copy; 2016, Adam Dempsey. <br> CIERA, Northwestern University.</footer>
+
+</body>
+</html>
+<script>
+$('#nav').affix({
+      offset: {
+        top: $('header').height()
+      }
+});
+
+$('#sidebar').affix({
+      offset: {
+        top: $('header').height()
+      }
+});
+</script>

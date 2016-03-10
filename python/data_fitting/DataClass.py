@@ -3,7 +3,10 @@ import scipy.optimize as opt
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
-class DataPoints():
+class DataPoints(object):
+    """ The DataPoints class holds the values, errorbars,
+    and name of some data.
+    """
     def __init__(self,val,label,err=None):
         self.val = val
         self.err = err
@@ -11,17 +14,27 @@ class DataPoints():
 
 
 
-class Data(DataPoints):
-    def __init__(self,Xdata=None, Ydata=None,from_file=False,filename=None,fitting_function = None):
-        if from_file:
-            self.load_from_file(filename)
-        else:
-            self.xdata = Xdata
-            self.ydata = Ydata
+class Data(object):
+    """
+    The Data class holds x and y data values following the DataPoints class.
+    It has functions to load, fit, and plot this data.
+    
+    """
+    def __init__(self,filename="data.dat",fitting_function = None):
+        """
+        Initialize the Data class.
+        filename holds the data file's name.
+        fitting_function holds the fitting function, it does not have to be set
+        at creation.
+        """
+        self.load_from_file(filename)
         self._fitting_function = fitting_function
 
     @property
     def fitting_function(self):
+        """
+        This function holds the fitting function, it defaults to None.
+        """
         return self._fitting_function
     @fitting_function.setter
     def fitting_function(self,name):
@@ -39,17 +52,25 @@ class Data(DataPoints):
         print'\tVariance {}: {:.3e}'.format(self.ydata.label,self.ydata.val.var())
         print'\tMedian {}: {:.3e}'.format(self.ydata.label,np.median(self.ydata.val))
 
-    def plot(self,ax=None,xlims=None,ylims=None,logx=False,logy=False,**kwargs):
-        if ax == None:
+    def plot(self,**kwargs):
+        """
+        Plot the data with any errorbars in y.
+        """
+        ax = kwargs.pop('ax',None)
+        xlims = kwargs.pop('xlims',None)
+        ylims = kwargs.pop('ylims',None)
+        logx = kwargs.pop('logx',False)
+        logy = kwargs.pop('logy',False)
+        
+        if ax is None:
             fig=plt.figure()
             ax = fig.add_subplot(111)
         fmt = kwargs.pop('fmt','o')
         fontsize = kwargs.pop('fontsize',15)
         grid_off = kwargs.pop('grid_off',False)
-        if self.ydata.err != None:
-            ax.errorbar(self.xdata.val,self.ydata.val,yerr=self.ydata.err,fmt=fmt,**kwargs)
-        else:
-            ax.plot(self.xdata.val,self.ydata.val,fmt,**kwargs)
+        ax.errorbar(self.xdata.val,self.ydata.val,
+                    xerr=self.xdata.err,yerr=self.ydata.err,
+                    fmt=fmt,**kwargs)
 
         ax.set_xlabel(self.xdata.label,fontsize=fontsize)
         ax.set_ylabel(self.ydata.label,fontsize=fontsize)
@@ -58,22 +79,27 @@ class Data(DataPoints):
         if logy:
             ax.set_yscale('log')
 
-        if xlims != None:
+        if xlims is not None:
             ax.set_xlim(xlims)
-        if ylims != None:
+        if ylims is not None:
             ax.set_ylim(ylims)
         ax.minorticks_on()
         if not grid_off:
             ax.grid(which='both')
-
-
+        fig.canvas.draw()
+    
     def load_from_file(self,filename):
         """ Load data from filename.
         The file should look like,
         # x y xerr yerr
           0 1 0   0
         """
-        dat = np.loadtxt(filename)
+        try:
+            dat = np.loadtxt(filename)
+        except IOError:
+            print '{} not found!'.format(filename)
+            raise
+            
         with open(filename,'r') as f:
             for line in f.readlines():
                 if '#' in line:
@@ -91,19 +117,27 @@ class Data(DataPoints):
                     print 'Not enough data points in {}!'.format(filename)
                     raise
 
-        self.xdata = DataPoints(dat[:,0],header[0],err= None if no_xerr else dat[:,2])
-        self.ydata = DataPoints(dat[:,1],header[1],err = None if no_yerr else dat[:,2] if no_xerr else dat[:,3])
+        self.xdata = DataPoints(dat[:,0],header[0],
+                                err= None if no_xerr else dat[:,2])
+        self.ydata = DataPoints(dat[:,1],header[1],
+                                err = None if no_yerr else dat[:,2] 
+                                if no_xerr else dat[:,3])
 
     def fit_data(self,initial_guess=None,fitting_function=None,**kwargs):
-        if self.fitting_function == None:
-            if fitting_function == None:
+        """ 
+        Fit the data to fitting_function with initial_guess.
+        Plots the data with the fit and returns the
+        best fit parameters,their errors, and the residuals.
+        """
+        if self.fitting_function is None:
+            if fitting_function is None:
                 print 'Fitting function not set!'
                 return
             else:
                 self.fitting_function = fitting_function
         abssigma = kwargs.pop('absolute_sigma',True)
         try:
-            if self.ydata.err == None:
+            if self.ydata.err is None:
                 popt,pcov = opt.curve_fit(self.fitting_function,
                                     self.xdata.val,self.ydata.val)
             else:
@@ -117,18 +151,27 @@ class Data(DataPoints):
 
 
         resids = self.ydata.val - self.fitting_function(self.xdata.val,*popt)
-        self.plot_fit(popt,pcov,resids)
+
+        self.plot_fit(popt,pcov,resids,**kwargs)
         self.print_fit(popt,pcov)
         return popt,pcov,resids
     def print_fit(self,popt,pcov):
+        """
+        Prints out the best fit parameters and their errors to the screen.
+        """
         for i,(v,e) in enumerate(zip(popt,np.sqrt(np.diag(pcov)))):
             print 'Parameter {:d}: {:.3e} +- {:.3e}'.format(i,v,e)
 
     def plot_fit(self,popt,pcov,resids,**kwargs):
-        if self.fitting_function == None:
+        """
+        Plots the data, the best fit, and the residuals.
+        """
+        if self.fitting_function is None:
             print "Please define a fitting function first!"
             return
-        fig = plt.figure(figsize=(20,10))
+            
+        figsize = kwargs.pop('figsize',(20,10))
+        fig = plt.figure(figsize=figsize)
         gs = gridspec.GridSpec(3,3)
         ax = fig.add_subplot(gs[:2,:])
         axr = fig.add_subplot(gs[-1,:])
@@ -145,10 +188,12 @@ class Data(DataPoints):
 
         x_fit = np.linspace(self.xdata.val[0],self.xdata.val[-1],1000)
         y_fit = self.fitting_function(x_fit,*popt)
-       # self.plot(ax=ax)
-        ax.errorbar(self.xdata.val,self.ydata.val,yerr=self.ydata.err,fmt=fmt)
+
+        
         ax.plot(x_fit,y_fit,color=color,linestyle=linestyle,linewidth=linewidth,**kwargs)
-        axr.errorbar(self.xdata.val,resids,yerr=self.ydata.err,fmt=fmt)
+        ax.errorbar(self.xdata.val,self.ydata.val,xerr=self.xdata.err,yerr=self.ydata.err,fmt=fmt)
+        axr.errorbar(self.xdata.val,resids,xerr=self.xdata.err,yerr=self.ydata.err,fmt=fmt)
+        ax.legend(loc='best')
         axr.axhline(0,color='k')
         axr.set_xlabel(self.xdata.label,fontsize=fontsize)
         axr.set_ylabel('Residuals',fontsize=fontsize)
