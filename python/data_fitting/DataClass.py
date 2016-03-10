@@ -87,6 +87,7 @@ class Data(object):
         if not grid_off:
             ax.grid(which='both')
         fig.canvas.draw()
+        plt.show()
     
     def load_from_file(self,filename):
         """ Load data from filename.
@@ -215,4 +216,5 @@ class Data(object):
             axr.grid(which='both')
             ax.grid(which='both')
         fig.canvas.draw()
+        plt.show()
 
