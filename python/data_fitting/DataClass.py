@@ -54,7 +54,7 @@ class Data(object):
 
     def plot(self,**kwargs):
         """
-        Plot the data with any errorbars in y.
+        Plot the data with any errorbars.
         """
         ax = kwargs.pop('ax',None)
         xlims = kwargs.pop('xlims',None)
