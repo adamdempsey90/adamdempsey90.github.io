@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> <title>How to Find an Exoplanet</title>
-  <link rel="stylesheet" type="text/css" href="../bootstrap.min.css">
-  <!-- <link rel="stylesheet" type="text/css" href="rv.css"> -->
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../bootstrap.min.css">
 
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
   <style>
     .navbar-form input, .form-inline input {
-      width:auto;
+    	width:auto;
     }
     header {
-      height:280px;
+    	height:280px;
     }
     #nav.navbar {
       position: fixed;
@@ -28,25 +28,38 @@
         z-index:10;
         /*background-color: #CED6D6;*/
     }
-    .wrapper canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
+    #sidebar.nav {
+      position: fixed;
+      top: 80px;
+      left: 0%;
+      width:200px
+    }
+    #sidebar.affix-top {
+        position: static;
+    }
+
+    #sidebar.affix {
+        position: fixed;
+        top: 80px;
+        left: 0%;
     }
   </style>
-  <script src="rv.min.js"></script>
-  <script src="canvasjs.min.js"></script>
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+  <link rel="stylesheet" type="text/css" href="orbits.css">
 
-  <script type="text/javascript"
-    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
-  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  <title> Keplerian Orbits </title>
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript"
+      src=../../bootstrap.min.js>
+    </script> -->
+    <script src="orbits.js"></script>
+    <script src="canvasjs.min.js"></script>
+
+    <title>Keplerian Orbits</title>
 </head>
-<!-- Begin Navbar -->
 <div id="nav">
   <div class="navbar navbar-default navbar-static">
     <div class="container">
@@ -58,20 +71,22 @@
       </a>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="../index.html">Home</a></li>
+          <li class="active"><a href="../../index.html">Home</a></li>
           <li class="divider"></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Python Lessons <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="../python/bouncing_ball/bouncing_ball.html">Bouncing Ball</a></li>
-              <li> <a href="../python/double_pendulum/double_pendulum.html">Double Pendulum</a> </li>
-              <li> <a href="../python/dark_energy/dark_energy.html">Dark Energy</a> </li>
+              <li><a href="../../python/bouncing_ball/bouncing_ball.html">Bouncing Ball</a></li>
+              <li> <a href="../../python/double_pendulum/double_pendulum.html">Double Pendulum</a> </li>
+              <li> <a href="../../python/dark_energy/dark_energy.html">Dark Energy</a> </li>
+                <li> <a href="../../python/radial_velocities/radial_velocities.html">Radial Velocities</a> </li>
+                <li> <a href="../../python/data_fitting/data_fitting.html">DataClass Module</a> </li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HTML5 Lessons <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li> <a href="worksheet.html">Keplerian Orbits</a> </li>
+              <li> <a href="orbits.html">Keplerian Orbits</a> </li>
             </ul>
           </li>
         </ul>
@@ -81,40 +96,31 @@
   </div><!-- /.navbar -->
 </div>
 
-<body position: relative;
-      width: 800px;
-      height: 100%;
-      margin-left:auto;
-      margin-right:auto;>
-<!-- <body position: relative;
-      width=100%;
-      height=100%;
+<body position=relative; >
 
-      margin-left: 80px;
-      margin-right: 80px;> -->
-<!-- <body style="font-family:sans-serif;
-             font-size:15px;
-             width:800px;
-             height=100%;
-             margin-left:auto;
-             margin-right:auto;">
-              -->
-
-
-    <h1>Orbit Simulator</h1>
-    <div style="left: 80px;">
-      Click <a href="worksheet.html"> here.</a> for an activity that uses the Orbit Simulator.
+ <div class="container">
+   <div class="row">
+     <div class="col-sm-1" id="myScrollspy">
+                 <ul id="sidebar" class="nav nav-pills nav-stacked" >
+                   <li> <a href="#title">The Orbit Simulator</a> </li>
+                   </ul>
     </div>
+    <div class="col-sm-9">
+    <div id="title">
+    <br>  <br>  <br>
+    <h1 >Orbit Simulator</h1>
+    <br><br><br>
+  
 
-    <div id="left-section" class="wrapper">
+
+    <div class="wrapper">
       <canvas id="theCanvas" width="300px" height="300px"></canvas>
       <canvas id="trailCanvas" width="300px" height="300px"></canvas>
     </div>
-    <br><br>
-    <div id="right-section" style="top:300px;">
 
-      <input type="button" id='myButton' value ="Stop" onclick="buttonChange();" class="button"></input>
-      <br /> <br />
+    <div class="right-section">
+      <br /> <br /> <br /> <br /> <br />
+
       <input type="range"  id="eSlider" min="0" max=".99" step=".01" value="0" oninput="initVars();" onchange="initVars();">
         e = <span id="eReadout">0</span>
       <br />
@@ -125,27 +131,24 @@
 
       <input type="range"  id="mSlider" min="-5.5" max="0" step=".01" value="-5.5" oninput="initVars();" onchange="initVars();">
       M = <span id="mReadout"> 1 Earths </span>
-      <br />
+      <!-- <br />
       <input type="range"  id="wSlider" min="0" max="360" step="1" value="0" oninput="initVars();" onchange="initVars();">
-      &theta; = <span id="wReadout">&deg;</span>
+      &theta; = <span id="wReadout">&deg;</span> -->
       <br /> <br />
 
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <input type="button" id='myButton' value ="Stop" onclick="buttonChange();" class="customButton"></input>
 
       </div>
-
-
-    <br>
-    <div id="charts">
-      <div id="chartContainer" style="height: 200px; width: 600px;"> </div>
-      <br>
-      <div id="chartContainer2" style="height: 200px; width: 600px;"> </div>
-      <br>
-      <div id="chartContainer3" style="height: 200px; width: 600px;"> </div>
+    <div class="charts">
+      <div id="chartContainer" style="height: 200px; width: 100%;"> </div>
+      <div id="chartContainer2" style="height: 200px; width: 100%;"> </div>
+      <div id="chartContainer3" style="height: 200px; width: 100%;"> </div>
     </div>
 
 
 
-  <div id="bottom-section">
+    <div>
     <p>This simulation calculates the Keplerian orbit of a planet around a star like our Sun.
       You can adjust the <i>mass</i> of the planet, the <i> eccentricity </i> of the orbit,
       and the <i> semi major axis </i> of the orbit.
@@ -160,13 +163,21 @@
       to measure this <i> radial velocity </i> of the Sun. Astronomers can measure this
       velocity and use it to infer the existence of unseen plants.
     </p>
-
-    <footer> Written by Adam Dempsey. <br> CIERA, Northwestern University.</footer>
+    <footer> &copy; 2016, Adam Dempsey. <br> CIERA, Northwestern University.</footer>
   </div>
-</body>
-</html>
+</div>
+</div>
+
+  </body>
+
+  </html>
     <script>
     $('#nav').affix({
+          offset: {
+            top: $('header').height()
+          }
+    });
+    $('#sidebar').affix({
           offset: {
             top: $('header').height()
           }
@@ -180,7 +191,7 @@
       var eSlider = document.getElementById('eSlider');
       var aSlider = document.getElementById('aSlider');
       var mSlider = document.getElementById('mSlider');
-      var wSlider = document.getElementById('wSlider');
+    //  var wSlider = document.getElementById('wSlider');
 
       var NewtG  = 4*Math.PI*Math.PI;
       var VtoKms = 4.74057172;
@@ -194,7 +205,8 @@
       var timer;
 
 
-      var ecc,semia, PlanetMass,PlanetSize,periapseAngle;
+      var ecc,semia, PlanetMass,PlanetSize;
+      //,periapseAngle;
 
       var ReducedMass,mtot,sfac, AuPerPixel;
       var SunX, SunY, PlanetX, PlanetY;
@@ -231,3 +243,6 @@
 
 
     </script>
+</body>
+
+</html>
