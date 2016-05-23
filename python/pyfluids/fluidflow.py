@@ -1,11 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-one_ninth = 1./9
-one_thirtysix = 1./36
-four_ninth = 4*one_ninth
 
 class Simulation(object):
+    one_ninth = 1./9
+    one_thirtysix = 1./36
+    four_ninth = 4*one_ninth
     def __init__(self,lx=200,ly=80,viscosity=0.02,velocity=0.1,mask=None):
         self.lx = lx
         self.nx = lx
@@ -20,15 +20,15 @@ class Simulation(object):
         self.fig,self.axes,self.imgs = self.init_plot()
     def init_fluid(self):
         temp = (np.ones((self.ny,self.nx)) - 1.5*self.velocity**2)
-        self.n_M = (four_ninth)*temp
-        self.n_N = (one_ninth) * temp
-        self.n_S = (one_ninth) * temp
-        self.n_E =  (one_ninth)*( temp + 3*self.velocity + 4.5*self.velocity**2)
-        self.n_W =  (one_ninth)*( temp - 3*self.velocity + 4.5*self.velocity**2)
-        self.n_NE = (one_thirtysix) * ( temp  + 3*self.velocity + 4.5*self.velocity**2)
-        self.n_SE = (one_thirtysix) * ( temp  + 3*self.velocity + 4.5*self.velocity**2)
-        self.n_NW = (one_thirtysix) * ( temp  - 3*self.velocity + 4.5*self.velocity**2)
-        self.n_SW = (one_thirtysix) * ( temp  - 3*self.velocity + 4.5*self.velocity**2)
+        self.n_M = (self.four_ninth)*temp
+        self.n_N = (self.one_ninth) * temp
+        self.n_S = (self.one_ninth) * temp
+        self.n_E =  (self.one_ninth)*( temp + 3*self.velocity + 4.5*self.velocity**2)
+        self.n_W =  (self.one_ninth)*( temp - 3*self.velocity + 4.5*self.velocity**2)
+        self.n_NE = (self.one_thirtysix) * ( temp  + 3*self.velocity + 4.5*self.velocity**2)
+        self.n_SE = (self.one_thirtysix) * ( temp  + 3*self.velocity + 4.5*self.velocity**2)
+        self.n_NW = (self.one_thirtysix) * ( temp  - 3*self.velocity + 4.5*self.velocity**2)
+        self.n_SW = (self.one_thirtysix) * ( temp  - 3*self.velocity + 4.5*self.velocity**2)
         self.density = self.n_M + self.n_N + self.n_S + self.n_E + self.n_W + self.n_NE + self.n_SE + self.n_NW + self.n_SW
         self.vx  = (self.n_E - self.n_W + self.n_NE - self.n_NW + self.n_SE - self.n_SW)/self.density
         self.vy  = (self.n_N - self.n_S + self.n_NE - self.n_SW + self.n_NW - self.n_SE)/self.density
@@ -83,22 +83,22 @@ class Simulation(object):
         temp = 1 - 1.5*v2
         vxvy = self.vx*self.vy
         visc = (1-self.omega)
-        self.n_M = visc*self.n_M + self.omega*(four_ninth)*self.density*temp
-        self.n_N = visc*self.n_N + self.omega*(one_ninth)*self.density*(temp +3*self.vy+4.5*vy2)
-        self.n_S = visc*self.n_S + self.omega*(one_ninth)*self.density*(temp -3*self.vy+4.5*vy2)
-        self.n_E = visc*self.n_E + self.omega*(one_ninth)*self.density*(temp +3*self.vx+4.5*vx2)
-        self.n_W = visc*self.n_W + self.omega*(one_ninth)*self.density*(temp -3*self.vx+4.5*vx2)
-        self.n_NE = visc*self.n_NE + self.omega*(one_thirtysix)*self.density*(temp +3*(self.vx+self.vy) + 4.5*(v2+2*vxvy))
-        self.n_NW = visc*self.n_NW + self.omega*(one_thirtysix)*self.density*(temp +3*(-self.vx+self.vy) + 4.5*(v2-2*vxvy))
-        self.n_SE = visc*self.n_SE + self.omega*(one_thirtysix)*self.density*(temp +3*(self.vx-self.vy) + 4.5*(v2-2*vxvy))
-        self.n_SW = visc*self.n_SW + self.omega*(one_thirtysix)*self.density*(temp -3*(self.vx+self.vy) + 4.5*(v2+2*vxvy))
+        self.n_M = visc*self.n_M + self.omega*(self.four_ninth)*self.density*temp
+        self.n_N = visc*self.n_N + self.omega*(self.one_ninth)*self.density*(temp +3*self.vy+4.5*vy2)
+        self.n_S = visc*self.n_S + self.omega*(self.one_ninth)*self.density*(temp -3*self.vy+4.5*vy2)
+        self.n_E = visc*self.n_E + self.omega*(self.one_ninth)*self.density*(temp +3*self.vx+4.5*vx2)
+        self.n_W = visc*self.n_W + self.omega*(self.one_ninth)*self.density*(temp -3*self.vx+4.5*vx2)
+        self.n_NE = visc*self.n_NE + self.omega*(self.one_thirtysix)*self.density*(temp +3*(self.vx+self.vy) + 4.5*(v2+2*vxvy))
+        self.n_NW = visc*self.n_NW + self.omega*(self.one_thirtysix)*self.density*(temp +3*(-self.vx+self.vy) + 4.5*(v2-2*vxvy))
+        self.n_SE = visc*self.n_SE + self.omega*(self.one_thirtysix)*self.density*(temp +3*(self.vx-self.vy) + 4.5*(v2-2*vxvy))
+        self.n_SW = visc*self.n_SW + self.omega*(self.one_thirtysix)*self.density*(temp -3*(self.vx+self.vy) + 4.5*(v2+2*vxvy))
 
-        self.n_E[:,0] = (one_ninth)*(1 + 3*self.velocity + 3.5*self.velocity**2)
-        self.n_W[:,0] = (one_ninth)*(1 - 3*self.velocity + 3.5*self.velocity**2)
-        self.n_NE[:,0] = (one_thirtysix)*(1 + 3*self.velocity + 3.5*self.velocity**2)
-        self.n_SE[:,0] = (one_thirtysix)*(1 + 3*self.velocity + 3.5*self.velocity**2)
-        self.n_NW[:,0] = (one_thirtysix)*(1 - 3*self.velocity + 3.5*self.velocity**2)
-        self.n_SW[:,0] = (one_thirtysix)*(1 - 3*self.velocity + 3.5*self.velocity**2)
+        self.n_E[:,0] = (self.one_ninth)*(1 + 3*self.velocity + 3.5*self.velocity**2)
+        self.n_W[:,0] = (self.one_ninth)*(1 - 3*self.velocity + 3.5*self.velocity**2)
+        self.n_NE[:,0] = (self.one_thirtysix)*(1 + 3*self.velocity + 3.5*self.velocity**2)
+        self.n_SE[:,0] = (self.one_thirtysix)*(1 + 3*self.velocity + 3.5*self.velocity**2)
+        self.n_NW[:,0] = (self.one_thirtysix)*(1 - 3*self.velocity + 3.5*self.velocity**2)
+        self.n_SW[:,0] = (self.one_thirtysix)*(1 - 3*self.velocity + 3.5*self.velocity**2)
 
     def curl(self):
         return np.roll(self.vy,-1,axis=1)-np.roll(self.vy,1,axis=1)-np.roll(self.vx,-1,axis=0)+np.roll(self.vx,1,axis=0)
@@ -127,21 +127,45 @@ class Simulation(object):
         fig.canvas.draw()
         return fig,axes,imgs
     def run(self,substeps=20,nt=100):
-
+        substeps = int(substeps)
+        nt = int(nt)
         for i in range(nt):
             for step in range(substeps):
                 self.stream()
                 self.collide()
+                if np.any(np.isnan(self.density)):
+                    print 'Simulation crashed!\nTry running with larger viscosity or smaller velocity'
+                    return
 
             self.imgs[0].set_array(self.curl())
             self.imgs[1].set_array(self.density)
             self.imgs[2].set_array(self.vx)
             self.imgs[3].set_array(self.vy)
             self.axes[0,0].set_title('t=%d, curl'%(i*substeps),fontsize=14)
-            self.fig.canvas.draw()
+            plt.pause(.0001)
+            plt.show()
+           # self.fig.canvas.draw()
         return
-def create_barrier(nx,ny,barrier='line'):
+
+def create_boundaries(nx,ny,boundary_type='inlet'):
     res = np.zeros((ny,nx)).astype(bool)
+    res[:ny/2-4,nx/4-2:nx/4+2] = True
+    res[-ny/2+4:,nx/4-2:nx/4+2] = True
+    return res
+    
+
+def create_barrier(nx,ny,barrier='line',fromfile=None):
+    res = np.zeros((ny,nx)).astype(bool)
+    if fromfile is not None:
+        try:
+            print 'Reading barrier information from file %s'%fromfile
+            res = np.loadtxt(fromfile)
+            if res.shape != (ny,nx):
+                res = res[:ny,:][:,:nx]
+            return res
+        except:
+            print 'Could not understand barrier information. Using barrier default.'
+            
     if barrier == 'line':
         res[ (ny/2)-8: (ny/2)+8,ny/2] = True
     elif barrier == '3 lines':
@@ -169,8 +193,8 @@ def create_barrier(nx,ny,barrier='line'):
         ttheta =np.tan(theta)
         length = 16.
         coords = [ [nx/2.,ny/2.+length/2],[nx/2.,ny/2.-length/2.],[nx/2.-length*ttheta/2.,ny/2.]]
-        #for i,c in enumerate(coords):
-        #    coords[i] = [ ca*c[0] - sa*c[1], sa*c[0] + ca*c[1] ]
+        for i,c in enumerate(coords):
+            coords[i] = [ ca*c[0] - sa*c[1], sa*c[0] + ca*c[1] ]
         for j in range(nx):
             for i in range(ny):
                  res[i,j] = inside_triange(coords,[float(i),float(j)])
