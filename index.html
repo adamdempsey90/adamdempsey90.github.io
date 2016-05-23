@@ -84,7 +84,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HTML5 Lessons <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li> <a href="#">Keplerian Orbits</a> </li>
+              <li> <a href="html5/orbits/orbits.html">Keplerian Orbits</a> </li>
             </ul>
           </li>
         </ul>
@@ -96,39 +96,52 @@
 
 
 
-<!-- <body style="font-family:sans-serif;
-             font-size:15px;
-             width:800px;
-             height=100%;
-             margin-left:auto;
-             margin-right:auto;
-             background-color:#E6E6E6 ;">
-             -->
+<body position= relative; data-spy="scroll" data-target="#myScrollspy">
 
+ <!-- Begin Body -->
+ <div class="container">
+ 	<div class="row">
+   			<div class="col-sm-3" id="myScrollspy">
+       			<ul id="sidebar" class="nav nav-pills nav-stacked" >
+                <li><a href="#title">Physics and Astronomy Activities</a></li>
+                <li><a href="#kinematics">Kinematics and Orbital Mechanics</a></li>
+       			<ul >
+                    <li><a href="html5/orbits/orbits.html">Keplerian Motion</a></li>
+                    <li><a href="python/bouncing_ball/bouncing_ball.html">Bouncing Ball</a></li>
+                    <li><a href="python/double_pendulum/double_pendulum.html">Double Pendulum</a></li>
+                </ul>
+                <li><a href="#data">Data Analysis</a></li>
+       			<ul >
+                    <li><a href="python/dark_energy/dark_energy.html">Dark Energy</a></li>
+                    <li><a href="python/radial_velocities/radial_velocities.html">Discover Exoplanets</a></li>
+                    <li><a href="python/data_fitting/data_fitting.html">Curve Fitting with Python</a></li>
+                </ul>
+                <li class="divider"></li>
+ 				</ul>
+        </div>
 
-             <body position= relative;>
+<div class="col-sm-9">
+<div id="title">
+    <br><br><br>
 
-            <!-- <body style="width=80px;
-                 height=100%;
-                 margin-left:auto;
-                 margin-right:auto;">
-                 -->
-
-    <div class="container">
       <h1> Physics and Astronomy Activities </h1>
     <p>
-      This page will house some of the activities and lessons I create for Physics and Astronomy classes. This is still in a very early stage, so pardon the mess!
+      This page will house some of the activities and lessons I've created for Physics and Astronomy classes as part of the GK-12 Reach for the Stars program. This is still in a very early stage, so pardon the mess!
     </p>
 
     <p>
-      Click the links below to access the differnent activities. Some require a Python installation, while others only require a browser.
+      Click the links below to access the different activities. Some require a Python installation, while others only require a browser.
     </p>
     <br>
-    <h2 > Kinematics and Orbial Mechanics</h2>
+</div>
+<hr>
+<div id="kinematics">
+    <br><br><br>
+    <h2 > Kinematics and Orbital Mechanics</h2>
     <ul>
-      <!-- <h3 > Keplerian Motion and the Radial Velocity Method</h3>
-      <li> Click <a href="rv/worksheet.html"> here</a>  for some activities that use an orbit modeler to simulate the effects of a plant orbiting a star. We can use some of these effects to detect planets around other stars!
-       </li> -->
+      <h3 > Keplerian Motion and the Radial Velocity Method</h3>
+      <li> Click <a href="html5/orbits/orbits.html"> here</a>  for some activities that use an <a href="html5/orbits/orbitsim.html">orbit modeler</a> to simulate the effects of a plant orbiting a star. We can use some of these effects to detect planets around other stars!
+       </li>
 
         <h3 > How to make a ball bounce with Python</h3>
         <li>
@@ -139,6 +152,10 @@
           Click <a href="python/double_pendulum/double_pendulum.html"> here </a> for an introductory Python lesson which models the double pendulum.
         </li>
     </ul>
+</div>
+<hr>
+<div id="data">
+    <br><br><br>
     <h2 >Data Analysis</h2>
     <ul>
       <h3 > Discovering Dark Energy with Python</h3>
@@ -154,9 +171,26 @@
         Click <a href="python/data_fitting/data_fitting.html"> here </a> for a simple Python module that makes plotting and fitting x,y data easy.
       </li>
   </ul>
-  </div>
   <br><br><br>
+  </div>
+  </div>
+  </div>
+  </div>
+</div>
 <footer> &copy; 2016, Adam Dempsey. <br> CIERA, Northwestern University.</footer>
 </body>
 
 </html>
+<script>
+$('#nav').affix({
+      offset: {
+        top: $('header').height()
+      }
+});
+
+$('#sidebar').affix({
+      offset: {
+        top: $('header').height()
+      }
+});
+</script>

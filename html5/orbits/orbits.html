@@ -2,28 +2,137 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <style>
-      table, th, td {
-          font-family:sans-serif;
-          font-size:15px;
-          border: 1px solid black;
-          border-collapse: collapse;
-      }
-      th, td {
-          padding: 5px;
-      }
-      </style>
+    <link rel="stylesheet" type="text/css" href="../../bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+  <style>
+    .navbar-form input, .form-inline input {
+    	width:auto;
+    }
+    header {
+    	height:280px;
+    }
+    #nav.navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: 0%;
+      z-index:10;
+      /*background-color: #CED6D6;*/
+    }
+    #nav.affix {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        left: 0%;
+        z-index:10;
+        /*background-color: #CED6D6;*/
+    }
+    #sidebar.nav {
+      position: fixed;
+      top: 80px;
+      left: 0%;
+    }
+    #sidebar.affix-top {
+        position: static;
+    }
+
+    #sidebar.affix {
+        position: fixed;
+        top: 80px;
+        left: 0%;
+    }
+  </style>
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript"
+      src=../../bootstrap.min.js>
+    </script> -->
+
+
     <title>Keplerian Orbits</title>
 </head>
 
-<body style="font-family:sans-serif;
+
+<!-- Begin Navbar -->
+<div id="nav">
+  <div class="navbar navbar-default navbar-static">
+    <div class="container">
+  <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <!-- <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span> -->
+      </a>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="../../index.html">Home</a></li>
+          <li class="divider"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Python Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="../../python/bouncing_ball/bouncing_ball.html">Bouncing Ball</a></li>
+              <li> <a href="../../python/double_pendulum/double_pendulum.html">Double Pendulum</a> </li>
+              <li> <a href="../../python/dark_energy/dark_energy.html">Dark Energy</a> </li>
+                <li> <a href="../../python/radial_velocities/radial_velocities.html">Radial Velocities</a> </li>
+                <li> <a href="../../python/data_fitting/data_fitting.html">DataClass Module</a> </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HTML5 Lessons <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li> <a href="#">Keplerian Orbits</a> </li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div><!-- /.navbar -->
+</div>
+
+
+<body position= relative; data-spy="scroll" data-target="#myScrollspy">
+      <!-- style="font-family:sans-serif;
              font-size:15px;
              width:800px;
-             background-color:#E6E6E6 ;">
+             margin-left: 10%;
+             height=100%;
+             margin-right:10%;
+             background-color; #FFF6F6; "> -->
+             <!-- data-spy="scroll" data-target="#myScrollspy" data-offset="15"> -->
+             <!-- background-color:#E6E6E6 ;"> -->
 
-  <h1 style="font-size:24px; text-align:center;">Keplerian Oribits</h1>
+ <!-- Begin Body -->
+ <div class="container">
+ 	<div class="row">
+   			<div class="col-sm-3" id="myScrollspy">
+       			<ul id="sidebar" class="nav nav-pills nav-stacked" >
+                <li><a href="#title">Keplerian Orbits.</a></li>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#orbitsim">The Orbit Simulator </a></li>
+                <li class="divider"></li>
+                <li><a href="#eccentricity">Eccentricity Effects</a></li>
+                <li><a href="#mass">Mass Effects</a></li>
+                <li><a href="#planettable">Planet Table</a></li>
+                  <li class="divider"></li>
+              <br>
+                  <li> <a href="orbitsim.html">The Orbit Simulator</a> </li>
+ 				      </ul>
+        </div>
 
-  <h2 style="font-size:20px; text-align:center;">Introduction</h2>
+<div class="col-sm-9">
+<div id="title">
+    <br><br><br>
+  <h1>Keplerian Orbits</h1>
+</div>
+<div id="introduction">
+    <br><br>
+  <h2>Introduction</h2>
+
 <p>
   The Solar System consists of eight planets, together with many smaller bodies,
   that orbit the Sun. In addition to our own Solar System, astronomers
@@ -33,21 +142,26 @@
   the Earth's orbit, while many have orbits closer to their host star. In addition, most
   of these discovered <i> exoplanets </i> are Super Earths, or planets that have a mass that of Earth and Neptune. The figures below show the distribution of planet semi major axes and masses for all of the discovered explanets.
 </p>
-  <div style="float: left; height=600px; position:relative" >
+<br> <br> <br>
+<div  class="image">
+  <img src="ahist.svg" style="float: left; width:50%;">
+  <img src="mhist.svg" style="float: left; width:50%;"> <br>
+  <br> <br> <br>
+</div>
+
+  <!-- <div style="float: left; height=600px; position:relative" >
     <img src="ahist.svg" style="float: left; width:50%;">
     <img src="mhist.svg" style="float: left; width:50%;">
-  </div>
-
-
-<p>
-  In the following activities, we will explore the different types of closed orbits using
-  the <a href="rv.html" > Orbit Simulator</a>. There are three activities which
-explore different physical quantities which affect a planet's orbit.
-</p>
-<h2 style="font-size:20px; text-align:center;">Activity 1</h2>
+  </div> -->
+<br> <br> <br>
+</div>
+<hr >
+<div id="orbitsim">
+<br><br>
+<h2>The Orbit Simulator</h2>
 
 <p>
-In this activity we will use the <a href="rv.html" >Orbit Simulator</a> to discover the relationship
+In this activity we will use the <a href="orbitsim.html" >Orbit Simulator</a> to discover the relationship
 between how long it takes a planet to go around the Sun and how far away that
 planet is from the Sun. This is also called Kepler's Third Law.
 <ol>
@@ -87,8 +201,11 @@ planet is from the Sun. This is also called Kepler's Third Law.
 </ol>
 
 </p>
-
-<h2 style="font-size:20px; text-align:center;">Activity 2</h2>
+</div>
+<hr >
+<div id="eccentricity">
+    <br><br>
+<h2>Eccentricity Effects</h2>
 For this activity we will explore the shape of the planet's orbit, and how the
 planet's eccentricity affects it.
 
@@ -108,8 +225,11 @@ planet's eccentricity affects it.
   </li>
 
 </ol>
-
-<h2 style="font-size:20px; text-align:center;">Activity 3</h2>
+</div>
+<hr >
+<div id="mass">
+    <br><br>
+<h2 >Mass Effects</h2>
 In this final activity we will be looking at the effects of varying the planet's
 mass.
 <ol>
@@ -123,8 +243,11 @@ mass.
     because of Jupiter? How fast is this compared to average walking speed?
   </li>
 </ol>
-
-<h2 style="font-size:20px; text-align:center;">Planet Table</h2>
+</div>
+<hr >
+<div id="planettable">
+<br><br>
+<h2>Planet Table</h2>
 
 <p> Below is a table of the Solar System planets, as well as some exoplanets. Try to set up the orbit of each of the planets in the table and measure their orbital period. You can try out different exoplanets by looking them up <a href="http://exoplanets.org/table" >here</a>. </p>
 
@@ -209,10 +332,26 @@ mass.
       </tr>
 
 </table>
-<p>
-  Click <a href="http://gk12.ciera.northwestern.edu/classroom/2015/Planets%20In%20Gas%20Disks%20Lesson.pdf">here<a> for an activity focusing on Planet Formation using NetLogo.
-</p>
-<footer> Written by Adam Dempsey. <br> CIERA, Northwestern University.</footer>
+<br> <br> <br>
+</div>
+</div>
+</div>
+</div>
+
+<footer> &copy; 2016, Adam Dempsey. <br> CIERA, Northwestern University.</footer>
 
 </body>
 </html>
+<script>
+$('#nav').affix({
+      offset: {
+        top: $('header').height()
+      }
+});
+
+$('#sidebar').affix({
+      offset: {
+        top: $('header').height()
+      }
+});
+</script>

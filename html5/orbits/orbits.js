@@ -4,12 +4,12 @@ function initVars() {
   ecc = Number(eSlider.value);
   semia = Math.pow(10,Number(aSlider.value));
   PlanetMass =  Math.pow(10,Number(mSlider.value));
-  periapseAngle = Number(wSlider.value)
+//  periapseAngle = Number(wSlider.value)
   showNewEccentricity();
   showNewA();
   showNewMass();
-  showNewPeriapse();
-
+  //showNewPeriapse();
+  document.getElementById('myButton').value = 'Stop'
 
 
 
@@ -17,8 +17,10 @@ function initVars() {
   ReducedMass = PlanetMass/mtot;
   sfac = PlanetMass/mtot;
 
-  var cos = Math.cos(periapseAngle*degToRad);
-  var sin = Math.sin(periapseAngle*degToRad);
+  var cos = 1.0;
+  var sin = 0.0;
+//  var cos = Math.cos(periapseAngle*degToRad);
+//  var sin = Math.sin(periapseAngle*degToRad);
 
   var radTemp = semia*(1-ecc)/(1+PlanetMass); // Distance of peri
   var vradTemp = -Math.sqrt((1+ecc)*NewtG*mtot/(semia*(1-ecc))); // Speed at peri
@@ -51,10 +53,10 @@ function initVars() {
   var aubin = setScale();
 
   drawSun();
-  // drawPlanet();
+  drawPlanet();
   clearTrails();
   drawBar(aubin);
-
+  Moving = true;
 
   dt = Math.pow(semia*(1-ecc),1.5)/200.;
   dt2 = dt*dt;
@@ -62,17 +64,10 @@ function initVars() {
   count = 0;
   timeResolution = Math.pow(semia,1.5)/PointsPerOrbit;
 
-
   clearChart();
-
-
   updateChart();
 
-  if (Moving) {
-    document.getElementById('myButton').value = 'Stop'
-    startIntegration();
-  }
-
+  startIntegration();
 
 
 }
@@ -131,7 +126,7 @@ function drawSun() {
   theContext.clearRect(0, 0, theCanvas.width, theCanvas.height);
   theContext.beginPath();
   theContext.arc(pixelX,pixelY, 20, 0, 2*Math.PI);
-  theContext.fillStyle = "#FFFF00"
+  theContext.fillStyle = "yellow"
   theContext.fill();
   trailContext.fillRect(pixelX-0.5, pixelY-0.5, 1, 1);
 
@@ -152,10 +147,10 @@ function drawSun() {
   trailContext.fillRect(pixelX-0.5, pixelY-0.5, 1, 1);
 
 }
-//
-// function drawPlanet() {
-//
-// }
+
+function drawPlanet() {
+
+}
 
 function startIntegration() {
   if (Moving) {
@@ -197,7 +192,7 @@ function moveSystem() {
   SunX = -sep[0]*sfac;
   SunY = -sep[1]*sfac;
   drawSun();
-  // drawPlanet();
+  drawPlanet();
 
   totaltime += dt;
   count += dt;
@@ -263,11 +258,9 @@ function showNewMass() {
   }
   mReadout.innerHTML = num + lbl
 }
-function showNewPeriapse() {
-  var num = periapseAngle
-  var lbl = '&deg;'
-  wReadout.innerHTML = num + lbl ;
-}
+// function showNewPeriapse() {
+//   wReadout.innerHTML = periapseAngle;
+// }
 
 
 function clearTrails() {
@@ -292,7 +285,7 @@ function clearChart() {
   dpsR = [{x:chartx,y:chartR}];
   chart = new CanvasJS.Chart("chartContainer",{
     theme: "theme1",
-    // backgroundColor: "#E6E6E6",
+    backgroundColor: "#FFFFFF",
     title :{
       text: "X Position of Planet (blue) and Sun (red) in Au vs Time (yrs)",
     },
@@ -315,7 +308,7 @@ function clearChart() {
   });
   chart2 = new CanvasJS.Chart("chartContainer2",{
     theme: "theme1",
-    // backgroundColor: "#E6E6E6",
+    backgroundColor: "#FFFFFF",
     title :{
       text: "X Velocity of Planet (blue) and Sun (red) in km/s vs Time (yrs)",
     },
@@ -338,7 +331,7 @@ function clearChart() {
   });
   chart3 = new CanvasJS.Chart("chartContainer3",{
     theme: "theme1",
-    // backgroundColor: "#E6E6E6",
+    backgroundColor: "#FFFFFF",
     title :{
       text: "Radial Velocity of Star (km/s) vs Time (yrs)",
     },
